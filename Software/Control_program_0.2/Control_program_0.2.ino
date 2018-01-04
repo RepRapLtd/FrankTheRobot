@@ -3,7 +3,7 @@ int MotorA2 = 9; //bottom right
 int MotorB1 = 5; //top left
 int MotorB2 = 6; //bottom left
 int motorspeed=140;
-int spintime=4000;
+int spintime=13500;
 
 #include <SparkFun_RFD77402_Arduino_Library.h> //Use Library Manager or download here: https://github.com/sparkfun/SparkFun_RFD77402_Arduino_Library
 RFD77402 myDistance; //Hook object to the library
@@ -80,6 +80,7 @@ distance = myDistance.getDistance(); //Retrieve the distance value
 if(distance>big)big=distance;
 }
 distance=0;
+AntiClockwise ();
 while(distance<(big*9)/10)
 {myDistance.takeMeasurement(); //Tell sensor to take measurement
 distance = myDistance.getDistance(); //Retrieve the distance value
