@@ -13473,7 +13473,6 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <part name="JP7" library="pinhead" deviceset="PINHD-1X2" device=""/>
 <part name="JP8" library="pinhead" deviceset="PINHD-1X3" device=""/>
 <part name="JP9" library="pinhead" deviceset="PINHD-1X3" device=""/>
-<part name="+3V5" library="supply1" deviceset="+3V3" device=""/>
 <part name="C2" library="rcl" deviceset="C-EU" device="C0805" value="0.1uF"/>
 <part name="C4" library="rcl" deviceset="C-EU" device="C0805" value="0.1uF"/>
 <part name="C5" library="rcl" deviceset="C-EU" device="C0805" value="0.1uF"/>
@@ -13481,6 +13480,7 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <part name="C6" library="rcl" deviceset="C-EU" device="C0805" value="0.1uF"/>
 <part name="C7" library="rcl" deviceset="C-EU" device="C0805" value="0.1uF"/>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
+<part name="P+5" library="supply1" deviceset="V+" device="" value="+6V5"/>
 </parts>
 <sheets>
 <sheet>
@@ -13515,6 +13515,7 @@ sensor</text>
 <text x="15.24" y="93.98" size="1.778" layer="96">R. Wheel
 sensor</text>
 <text x="90.17" y="74.93" size="1.778" layer="96" rot="R90">batt volts</text>
+<text x="-78.74" y="114.3" size="1.778" layer="95">Note: wheel sensors take too much current to run off 3v3.</text>
 </plain>
 <instances>
 <instance part="U$1" gate="G$1" x="35.56" y="50.8" smashed="yes"/>
@@ -13552,7 +13553,6 @@ sensor</text>
 <instance part="JP7" gate="G$1" x="-63.5" y="63.5" rot="R180"/>
 <instance part="JP8" gate="A" x="-10.16" y="99.06" rot="R90"/>
 <instance part="JP9" gate="A" x="7.62" y="99.06" rot="R90"/>
-<instance part="+3V5" gate="G$1" x="-20.32" y="106.68"/>
 <instance part="C2" gate="G$1" x="0" y="121.92"/>
 <instance part="C4" gate="G$1" x="76.2" y="121.92"/>
 <instance part="C5" gate="G$1" x="137.16" y="35.56"/>
@@ -13560,6 +13560,7 @@ sensor</text>
 <instance part="C6" gate="G$1" x="33.02" y="132.08"/>
 <instance part="C7" gate="G$1" x="43.18" y="132.08"/>
 <instance part="GND10" gate="1" x="38.1" y="124.46" rot="MR0"/>
+<instance part="P+5" gate="1" x="-20.32" y="109.22"/>
 </instances>
 <busses>
 </busses>
@@ -13690,20 +13691,6 @@ sensor</text>
 <pinref part="+3V4" gate="G$1" pin="+3V3"/>
 <wire x1="119.38" y1="91.44" x2="119.38" y2="93.98" width="0.1524" layer="91"/>
 </segment>
-<segment>
-<pinref part="JP8" gate="A" pin="1"/>
-<wire x1="-12.7" y1="96.52" x2="-12.7" y2="88.9" width="0.1524" layer="91"/>
-<pinref part="+3V5" gate="G$1" pin="+3V3"/>
-<wire x1="-12.7" y1="88.9" x2="-20.32" y2="88.9" width="0.1524" layer="91"/>
-<wire x1="-20.32" y1="88.9" x2="-20.32" y2="101.6" width="0.1524" layer="91"/>
-<wire x1="-20.32" y1="101.6" x2="-20.32" y2="104.14" width="0.1524" layer="91"/>
-<wire x1="-20.32" y1="101.6" x2="-2.54" y2="101.6" width="0.1524" layer="91"/>
-<wire x1="-2.54" y1="101.6" x2="-2.54" y2="91.44" width="0.1524" layer="91"/>
-<wire x1="-2.54" y1="91.44" x2="5.08" y2="91.44" width="0.1524" layer="91"/>
-<pinref part="JP9" gate="A" pin="1"/>
-<wire x1="5.08" y1="91.44" x2="5.08" y2="96.52" width="0.1524" layer="91"/>
-<junction x="-20.32" y="101.6"/>
-</segment>
 </net>
 <net name="N$1" class="0">
 <segment>
@@ -13822,6 +13809,20 @@ sensor</text>
 <pinref part="P+4" gate="1" pin="V+"/>
 <pinref part="R1" gate="G$1" pin="2"/>
 <wire x1="96.52" y1="96.52" x2="96.52" y2="93.98" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="JP8" gate="A" pin="1"/>
+<wire x1="-12.7" y1="96.52" x2="-12.7" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="-12.7" y1="88.9" x2="-20.32" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="-20.32" y1="88.9" x2="-20.32" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="-20.32" y1="101.6" x2="-2.54" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="-2.54" y1="101.6" x2="-2.54" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="-2.54" y1="91.44" x2="5.08" y2="91.44" width="0.1524" layer="91"/>
+<pinref part="JP9" gate="A" pin="1"/>
+<wire x1="5.08" y1="91.44" x2="5.08" y2="96.52" width="0.1524" layer="91"/>
+<junction x="-20.32" y="101.6"/>
+<pinref part="P+5" gate="1" pin="V+"/>
+<wire x1="-20.32" y1="101.6" x2="-20.32" y2="106.68" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$11" class="0">
