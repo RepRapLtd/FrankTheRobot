@@ -4,7 +4,7 @@
 (This file generated from the board:)
 (.../Electronics/wheel-opto-sensor-v2.brd)
 (Current profile is .../pcb-gcode/profiles/generic.pp  )
-(This file generated 31/01/2018 14:54)
+(This file generated 01/02/2018 15:14)
 (Settings from pcb-machine.h)
 (spindle on time = 1000.0000)
 (spindle speed = 15000.0000)

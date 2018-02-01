@@ -140,15 +140,15 @@ void setup()
   SetupLIDAR();
 }
 
-void Report(int sel)
+void Report()
 {
-  digitalWrite(aSelect,sel);
+  digitalWrite(aSelect,1);
   int v = analogRead(aRead);
-  if(sel)
-    Serial.print("voltage: ");
-  else
-    Serial.print("photo: ");
-  Serial.print(": ");
+  Serial.print("voltage: ");
+  Serial.println(v);
+  digitalWrite(aSelect,0);
+  v = analogRead(aRead);
+  Serial.print("photo: ");
   Serial.println(v);
   Serial.print("L, R sense: ");
   Serial.print(digitalRead(lSense));
@@ -165,13 +165,17 @@ void loop()
   Serial.println("forward");
   LeftMotor(forward);
   RightMotor(forward);
-  Report(0);
-  Serial.println("backward");
-  LeftMotor(backward);
-  RightMotor(backward);
-  Report(1);
+  Report();
   Serial.println("stop");
   LeftMotor(stop);
   RightMotor(stop);
-  Report(0);  
+  Report();  
+  Serial.println("backward");
+  LeftMotor(backward);
+  RightMotor(backward);
+  Report();
+  Serial.println("stop");
+  LeftMotor(stop);
+  RightMotor(stop);
+  Report();  
 }

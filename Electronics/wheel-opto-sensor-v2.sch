@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.5.0">
+<eagle version="8.2.1">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -6252,12 +6252,12 @@ Source: AVX .. aphvc.pdf</description>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
 <part name="+3V1" library="supply1" deviceset="+3V3" device="" value="+6V5"/>
 <part name="R1" library="rcl" deviceset="R-EU_" device="M0805" value="120R"/>
-<part name="R2" library="rcl" deviceset="R-EU_" device="M0805" value="1K8"/>
+<part name="R2" library="rcl" deviceset="R-EU_" device="M0805" value="4K7"/>
 <part name="R3" library="rcl" deviceset="R-EU_" device="M0805" value="10K"/>
-<part name="R4" library="rcl" deviceset="R-EU_" device="M0805" value="1K2"/>
+<part name="R4" library="rcl" deviceset="R-EU_" device="M0805" value="6K8"/>
 <part name="C1" library="rcl" deviceset="C-EU" device="C1206" value="10uF"/>
 <part name="JP1" library="pinhead" deviceset="PINHD-1X3" device=""/>
-<part name="R5" library="rcl" deviceset="R-EU_" device="M0805" value="1K"/>
+<part name="R5" library="rcl" deviceset="R-EU_" device="M0805" value="4K7"/>
 <part name="U$1" library="reprapltd" deviceset="RPI-579N1" device=""/>
 </parts>
 <sheets>
@@ -6325,7 +6325,7 @@ Source: AVX .. aphvc.pdf</description>
 <junction x="27.94" y="58.42"/>
 </segment>
 </net>
-<net name="+3V3" class="0">
+<net name="+6V5" class="0">
 <segment>
 <pinref part="R2" gate="G$1" pin="2"/>
 <wire x1="33.02" y1="86.36" x2="33.02" y2="78.74" width="0.1524" layer="91"/>
