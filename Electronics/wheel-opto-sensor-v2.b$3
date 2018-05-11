@@ -1551,7 +1551,7 @@ design rules under a new name.</description>
 <wire x1="28.575" y1="10.4775" x2="28.575" y2="9.9525" width="1.016" layer="1"/>
 <wire x1="28.575" y1="9.9525" x2="28.495" y2="9.8725" width="1.016" layer="1"/>
 </signal>
-<signal name="+3V3">
+<signal name="+6V5">
 <contactref element="R2" pad="2"/>
 <contactref element="R4" pad="2"/>
 <contactref element="C1" pad="1"/>

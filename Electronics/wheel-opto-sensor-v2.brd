@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.5.0">
+<eagle version="8.2.1">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -146,6 +146,8 @@
 <wire x1="0" y1="16.5" x2="0" y2="0" width="0" layer="20"/>
 <hole x="18.0975" y="2.54" drill="1.8"/>
 <hole x="18.0975" y="13.97" drill="1.8"/>
+<hole x="28.2575" y="13.97" drill="1.8"/>
+<hole x="28.2575" y="2.54" drill="1.8"/>
 </plain>
 <libraries>
 <library name="rcl">

@@ -1940,6 +1940,11 @@ These strictly adhere to the PCB Train board house specs. The rules are &lt;i&gt
 <contactref element="C6" pad="2"/>
 <contactref element="C7" pad="2"/>
 <contactref element="LED1" pad="C"/>
+<wire x1="26.416" y1="50.8" x2="26.416" y2="52.324" width="0.8128" layer="1"/>
+<wire x1="26.416" y1="52.324" x2="26.3525" y2="52.3875" width="0.8128" layer="1"/>
+<wire x1="26.3525" y1="52.3875" x2="21.59" y2="52.3875" width="0.8128" layer="1"/>
+<wire x1="21.59" y1="52.3875" x2="21.59" y2="48.48" width="0.8128" layer="1"/>
+<wire x1="21.59" y1="48.48" x2="22.1275" y2="47.9425" width="0.8128" layer="1"/>
 </signal>
 <signal name="VIN">
 <contactref element="U$1" pad="VIN"/>
@@ -2150,10 +2155,12 @@ These strictly adhere to the PCB Train board house specs. The rules are &lt;i&gt
 <wire x1="26.9875" y1="10.16" x2="27.6225" y2="10.795" width="0.8128" layer="16"/>
 <wire x1="27.6225" y1="36.83" x2="27.6225" y2="10.795" width="0.8128" layer="16"/>
 <contactref element="U$1" pad="D11"/>
-<wire x1="33.02" y1="42.2275" x2="27.6225" y2="36.83" width="0.8128" layer="16"/>
+<wire x1="34.036" y1="43.2435" x2="27.6225" y2="36.83" width="0.8128" layer="16"/>
 <wire x1="34.036" y1="50.8" x2="34.036" y2="49.5935" width="0.8128" layer="16"/>
-<wire x1="34.036" y1="49.5935" x2="33.02" y2="48.5775" width="0.8128" layer="16"/>
-<wire x1="33.02" y1="48.5775" x2="33.02" y2="42.2275" width="0.8128" layer="16"/>
+<wire x1="34.036" y1="49.5935" x2="33.3375" y2="48.895" width="0.8128" layer="16"/>
+<wire x1="33.3375" y1="48.895" x2="31.75" y2="48.895" width="0.8128" layer="16"/>
+<wire x1="31.75" y1="48.895" x2="31.75" y2="45.5295" width="0.8128" layer="16"/>
+<wire x1="31.75" y1="45.5295" x2="34.036" y2="43.2435" width="0.8128" layer="16"/>
 </signal>
 <signal name="N$18">
 <contactref element="U$1" pad="D10"/>

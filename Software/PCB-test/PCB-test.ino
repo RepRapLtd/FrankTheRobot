@@ -5,23 +5,29 @@ VL53L0X sensor;
 
 const int del = 1000;
 
-const char rRIN = D6;
+// Arduino pins
+
+const char rRIN = D6; // Right motor pins
 const char rFIN = D5;
 
-const char lRIN = D8;
+const char lRIN = D8; // Left motor pins
 const char lFIN = D7;
 
-const char rSense = D9;
+const char rSense = D11; // Wheel sensors
 const char lSense = D10;
 
-const char aSelect = D2;
-const char aRead = A0;
-const char photo = false;
-const char voltage = !photo;
+const char aSelect = D2;     // Select analogue channel
+const char aRead = A0;       // Read analogue voltage
+const char photo = false;    // Send to aSelect to read the photosensor
+const char voltage = !photo; // Send to aSelect to read the battery voltage
+
+// Directions, and stop
 
 const char stop = 0;
 const char forward = 1;
 const char backward = 2;
+
+// LIDAR numbers
 
 float rateLimit = 0.25;
 uint32_t timingBudget = 100000;
@@ -69,6 +75,8 @@ void SetupLIDAR()
   sensor.startContinuous();    
 }
 
+// Return the distance in mm
+
 unsigned int LIDARDistance()
 {
   unsigned int r = sensor.readRangeContinuousMillimeters();
@@ -81,6 +89,8 @@ unsigned int LIDARDistance()
   }
   return r;  
 }
+
+// Control the leftmotor
 
 void LeftMotor(char direction)
 {
@@ -103,6 +113,8 @@ void LeftMotor(char direction)
   } 
 }
 
+// Control the right motor
+
 void RightMotor(char direction)
 {
   switch(direction)
@@ -124,6 +136,28 @@ void RightMotor(char direction)
   } 
 }
 
+// Send what's going on down the USB
+
+void Report()
+{
+  digitalWrite(aSelect,voltage);
+  int v = analogRead(aRead);
+  Serial.print("voltage: ");
+  Serial.println(v);
+  digitalWrite(aSelect,photo);
+  v = analogRead(aRead);
+  Serial.print("photo: ");
+  Serial.println(v);
+  Serial.print("L, R sense: ");
+  Serial.print(digitalRead(lSense));
+  Serial.print(" ");
+  Serial.println(digitalRead(rSense));
+  Serial.print("d: ");
+  Serial.println(LIDARDistance());
+  Serial.println();
+  delay(del);
+}
+
 void setup() 
 {
   Serial.begin(9600);
@@ -138,26 +172,6 @@ void setup()
   pinMode(aRead, OUTPUT);
   
   SetupLIDAR();
-}
-
-void Report()
-{
-  digitalWrite(aSelect,1);
-  int v = analogRead(aRead);
-  Serial.print("voltage: ");
-  Serial.println(v);
-  digitalWrite(aSelect,0);
-  v = analogRead(aRead);
-  Serial.print("photo: ");
-  Serial.println(v);
-  Serial.print("L, R sense: ");
-  Serial.print(digitalRead(lSense));
-  Serial.print(" ");
-  Serial.println(digitalRead(rSense));
-  Serial.print("d: ");
-  Serial.println(LIDARDistance());
-  Serial.println();
-  delay(del);
 }
 
 void loop() 

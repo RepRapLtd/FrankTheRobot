@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.2.1">
+<eagle version="7.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -15477,11 +15477,11 @@ sensor</text>
 </net>
 <net name="N$17" class="0">
 <segment>
+<pinref part="U$1" gate="G$1" pin="D9"/>
+<wire x1="40.64" y1="78.74" x2="40.64" y2="91.44" width="0.1524" layer="91"/>
+<wire x1="40.64" y1="91.44" x2="-17.78" y2="91.44" width="0.1524" layer="91"/>
 <pinref part="JP9" gate="A" pin="2"/>
-<wire x1="35.56" y1="91.44" x2="-17.78" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="-17.78" y1="91.44" x2="-17.78" y2="96.52" width="0.1524" layer="91"/>
-<pinref part="U$1" gate="G$1" pin="D11"/>
-<wire x1="35.56" y1="78.74" x2="35.56" y2="91.44" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$18" class="0">
@@ -15567,11 +15567,9 @@ sensor</text>
 </net>
 <net name="N$20" class="0">
 <segment>
-<pinref part="U$1" gate="G$1" pin="D9"/>
-<wire x1="40.64" y1="78.74" x2="40.64" y2="96.52" width="0.1524" layer="91"/>
-<wire x1="40.64" y1="96.52" x2="35.56" y2="96.52" width="0.1524" layer="91"/>
 <pinref part="R4" gate="G$1" pin="1"/>
-<wire x1="35.56" y1="96.52" x2="35.56" y2="104.14" width="0.1524" layer="91"/>
+<pinref part="U$1" gate="G$1" pin="D11"/>
+<wire x1="35.56" y1="104.14" x2="35.56" y2="78.74" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
