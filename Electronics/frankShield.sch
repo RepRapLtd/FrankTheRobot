@@ -15091,6 +15091,12 @@ sensor</text>
 sensor</text>
 <text x="90.17" y="74.93" size="1.778" layer="96" rot="R90">batt volts</text>
 <text x="-78.74" y="114.3" size="1.778" layer="95">Note: wheel sensors take too much current to run off 3v3.</text>
+<wire x1="35.56" y1="66.04" x2="35.56" y2="63.5" width="0.1524" layer="95"/>
+<wire x1="35.56" y1="63.5" x2="33.02" y2="63.5" width="0.1524" layer="95"/>
+<wire x1="33.02" y1="63.5" x2="30.48" y2="63.5" width="0.1524" layer="95"/>
+<wire x1="30.48" y1="63.5" x2="30.48" y2="66.04" width="0.1524" layer="95"/>
+<wire x1="33.02" y1="63.5" x2="33.02" y2="66.04" width="0.1524" layer="95"/>
+<text x="27.94" y="60.96" size="1.778" layer="95">no connect</text>
 </plain>
 <instances>
 <instance part="U$1" gate="G$1" x="35.56" y="50.8" smashed="yes"/>
