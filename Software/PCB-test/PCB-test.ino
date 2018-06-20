@@ -18,21 +18,63 @@
 
 VL53L0X sensor;
 
-// Wemos D1 R1 "Arduino" pins - * = tested
+#define WEMOS_MINI
 
-const char rRIN = D6; //* Right motor pins
-const char rFIN = D5; //*
+#ifdef WEMOS_R1
+// Wemos D1 R1 "Arduino" pins
 
-const char lRIN = D8; //* Left motor pins
-const char lFIN = D7; //*
+const char rRIN = D6; // Right motor pins
+const char rFIN = D5; //
 
-const char rSense = D9; //*R Wheel sensors NB: LED pin - LED pulls up?
-const char lSense = D10; //*R (Input pulldown)
+const char lRIN = D8; // Left motor pins
+const char lFIN = D7; //
 
-const char led = LED_BUILTIN; // D9*
+const char rSense = D9; // Wheel sensors NB: LED pin - LED pulls up?
+const char lSense = D10; // (Input pulldown)
 
-const char aSelect = D2;     //* Select analogue channel
+const char led = LED_BUILTIN; // D9
+
+const char aSelect = D2;     // Select analogue channel
 const char aRead = A0;       // Read analogue voltage
+#endif
+
+
+#ifdef WEMOS_R2
+// Wemos D1 R2 "Arduino" pins
+
+const char rRIN = D4; // Right motor pins
+const char rFIN = D3;
+
+const char lRIN = D6; // Left motor pins
+const char lFIN = D8;
+
+const char rSense = D7; // Wheel sensors
+const char lSense = D5;
+
+const char led = LED_BUILTIN;
+
+const char aSelect = D0;     // Select analogue channel
+const char aRead = A0;       // Read analogue voltage
+#endif
+
+#ifdef WEMOS_MINI
+// Wemos Mini "Arduino" pins
+
+const char rRIN = D8; // Right motor pins
+const char rFIN = D6;
+
+const char lRIN = D4; // Left motor pins
+const char lFIN = D3;
+
+const char rSense = D7; // Wheel sensors
+const char lSense = D5;
+
+const char led = LED_BUILTIN;
+
+const char aSelect = D0;     // Select analogue channel
+const char aRead = A0;       // Read analogue voltage
+#endif
+
 const char photo = false;    // Send to aSelect to read the photosensor
 const char voltage = !photo; // Send to aSelect to read the battery voltage
 
