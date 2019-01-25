@@ -11,6 +11,12 @@
  * 8 June 2018
  * 
  * Licence: GPL
+ * 
+ * Additional programming:
+ * 
+ * George Newton Shaw
+ * 29 June 2018
+ *
  */
 
 #include <Wire.h>

@@ -13251,6 +13251,8 @@ sensor</text>
 <text x="90.17" y="74.93" size="1.778" layer="96" rot="R90">batt volts</text>
 <text x="-78.74" y="114.3" size="1.778" layer="95">Note: wheel sensors take too much current to run off 3v3.</text>
 <text x="-12.7" y="68.58" size="1.778" layer="95">to drop 0.7V</text>
+<text x="124.46" y="66.04" size="1.778" layer="96">665‑5347
+ </text>
 </plain>
 <instances>
 <instance part="JP1" gate="G$1" x="-51.1175" y="63.5" rot="R180"/>
