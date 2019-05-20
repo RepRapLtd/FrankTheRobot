@@ -21,6 +21,8 @@
 
 #include <Wire.h>
 #include <VL53L0X.h>
+#include <ESP8266WiFi.h>
+#include "localwifi.h"
 
 VL53L0X sensor;
 
@@ -80,6 +82,14 @@ const char led = LED_BUILTIN;
 const char aSelect = D0;     // Select analogue channel
 const char aRead = A0;       // Read analogue voltage
 #endif
+
+// Comms
+
+WiFiServer server(80);
+bool USB = true;
+bool wifi = !USB;
+
+// A->D
 
 const char photo = false;    // Send to aSelect to read the photosensor
 const char voltage = !photo; // Send to aSelect to read the battery voltage
@@ -161,6 +171,30 @@ unsigned int LIDARDistance()
   return r;  
 }
 
+void SetupWiFi()
+{
+  Serial.print("\nConnecting to ");
+  Serial.print(ssid);
+ 
+  WiFi.begin(ssid, password);
+ 
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(" .");
+  }
+  Serial.println("\nWiFi connected");
+ 
+  // Start the server
+  server.begin();
+  Serial.println("Server started");
+ 
+  // Print the IP address
+  Serial.print("Use this URL : ");
+  Serial.print("http://");
+  Serial.print(WiFi.localIP());
+  Serial.println("/");
+}
+
 // Control the leftmotor
 
 void LeftMotor(char direction)
@@ -220,13 +254,13 @@ void RightMotor(char direction)
 }
 
 
-void PrintDistance()
+void PrintDistance(bool usb)
 {
   Serial.print("LIDAR distanc (mm): ");
   Serial.println(LIDARDistance());  
 }
 
-void PrintWheels()
+void PrintWheels(bool usb)
 {
   Serial.print("L, R wheel sensors: ");
   Serial.print(digitalRead(lSense));
@@ -234,7 +268,7 @@ void PrintWheels()
   Serial.println(digitalRead(rSense));  
 }
 
-void PrintIllumination()
+void PrintIllumination(bool usb)
 {
   digitalWrite(aSelect,photo);
   int v = analogRead(aRead);
@@ -242,7 +276,7 @@ void PrintIllumination()
   Serial.println(v);  
 }
 
-void PrintBattery()
+void PrintBattery(bool usb)
 {
   digitalWrite(aSelect,voltage);
   int v = analogRead(aRead);
@@ -331,6 +365,31 @@ void StopMotors()
   rStop = false;
 }
 
+
+void WiFiResponse(WiFiClient &client)
+{
+  // Return the response
+  client.println("HTTP/1.1 200 OK");
+  client.println("Content-Type: text/html");
+  client.println(""); //  do not forget this one
+  client.println("<!DOCTYPE HTML>");
+  client.println("<html>");
+ 
+  client.print("Led pin is now: ");
+ 
+  if(value == HIGH) {
+    client.print("On");  
+  } else {
+    client.print("Off");
+  }
+  client.println("<br><br>");
+  client.println("Click <a href=\"/LED=ON\">here</a> turn the LED on pin 5 ON<br>");
+  client.println("Click <a href=\"/LED=OFF\">here</a> turn the LED on pin 5 OFF<br>");
+  client.println("</html>");  
+}
+
+
+
 // Remind the user what can be done...
 
 void Prompt()
@@ -340,7 +399,10 @@ void Prompt()
   Serial.println(" l n - turn left motor for n steps backward.");
   Serial.println(" R n - turn right motor for n steps forward.");
   Serial.println(" r n - turn right motor for n steps backward.");
-  Serial.println(" c - calibrate motor speeds.");
+  Serial.println(" c n - clockwise for n steps.");
+  Serial.println(" a n - anticlockwise for n steps.");
+  Serial.println(" f n - forward for n steps.");
+  Serial.println(" r n - reverse for n steps.");
   Serial.println(" d - print distance reading.");
   Serial.println(" w - print states of wheel sensors.");
   Serial.println(" v - print battery voltage.");
@@ -350,10 +412,165 @@ void Prompt()
   Serial.println();
 }
 
+int GetInteger(bool usb)
+{
+  int n;
+  if(usb)
+  {
+    n = Serial.parseInt();
+    Serial.print(n);
+  } else
+  {
+    n = 1;
+  }
+  return n;
+}
+
+void Interpret(String request, bool usb)
+{
+  int n;
+
+    // Match the request
+ 
+  int value = LOW;
+  if (request.indexOf("/LED=ON") != -1) {
+    digitalWrite(ledPin, HIGH);
+    value = HIGH;
+  } 
+  if (request.indexOf("/LED=OFF") != -1){
+    digitalWrite(ledPin, LOW);
+    value = LOW;
+  }
+  
+  switch(c)
+  {
+    case 'L':
+      n = GetInteger(usb);
+      RunLeft(n, forward);
+      break;
+
+   case 'l':
+      n = GetInteger(usb);
+      RunLeft(n, backward);
+      break;
+
+   case 'R':
+      n = GetInteger(usb);
+      RunRight(n, forward);
+      break;
+
+   case 'r':
+      n = GetInteger(usb);
+      RunRight(n, backward);
+      break;
+
+   case 'c':
+      n = GetInteger(usb);
+      RunRight(n, forward);
+      RunLeft(n, backward);
+      break;
+
+   case 'a':
+      n = GetInteger(usb);
+      RunRight(n, backward);
+      RunLeft(n, forward);
+      break;
+
+   case 'f':
+      n = GetInteger(usb);
+      RunRight(n, forward);
+      RunLeft(n, forward);
+      break;
+      
+   case 'b':
+      n = GetInteger(usb);
+      RunRight(n, backward);
+      RunLeft(n, backward);
+      break;
+
+   case 'd':
+      PrintDistance(usb);
+      break;
+
+   case 'w':
+      PrintWheels(usb);
+      break;
+
+   case 'v':
+      PrintBattery(usb);
+      break;
+
+   case 'i':
+      PrintIllumination(usb);
+      break; 
+  
+    case 0:
+      break;
+
+    case 'D':
+      SetupLIDAR();
+      break;
+
+    case 's':
+      StopMotors();
+      break;
+      
+
+    default:
+      if(usb)
+      {
+        Serial.println("??");
+        Prompt();
+      }
+      break;
+  }  
+}
+
+
+void GetUSB()
+{
+  if(!Serial.available())
+  {
+    return;
+  }
+  String request = Serial.readStringUntil('\n');
+  Interpret(request, USB);
+}
+
+void GetWiFi()
+{
+  WiFiClient client = server.available();
+  if (!client) 
+  {
+    return;
+  }
+ 
+  while(!client.available())
+  {
+    delay(1);
+  }
+ 
+  // Read the first line of the request
+  String request = client.readStringUntil('\r');
+  client.flush();
+  Serial.println(request);
+  int r = request.lastIndexOf("frank");
+  if(r < 0)
+  {
+    Serial.println("\nUnexpected request");
+  } else
+  {
+    request = request.substring(r + 5);
+    Interpret(request, wifi);
+  }
+
+  delay(1);
+}
+
 void setup() 
 {
   Serial.begin(9600);
-  Serial.println("Frank electronics test");
+  Serial.println("Frank control program");
   
   pinMode(rRIN, OUTPUT);
   pinMode(rFIN, OUTPUT);
@@ -381,94 +598,13 @@ void setup()
   Serial.print("Command: ");  
 }
 
-void CalibrateMotors()
-{
-  Serial.println("\nRNeed some code here...");
-}
-
 
 void loop()
 {
-  char c;
-  long n;
-
-  // Has the user typed a command?
+  // Check the two input streams:
   
-  c = 0;
-  if (Serial.available() > 0) 
-      c = (char)Serial.read();
-  if(c == '\n' || c == '\r' || c == ' ') // Throw away white space
-    c = 0;
-      
-  if(c)
-  {
-    Serial.print(c);
-    
-    switch(c)
-    {
-      case 'L':
-        n = Serial.parseInt();
-        Serial.print(n);
-        RunLeft(n, forward);
-        break;
-  
-     case 'l':
-        n = Serial.parseInt();
-        Serial.print(n);
-        RunLeft(n, backward);
-        break;
-  
-     case 'R':
-        n = Serial.parseInt();
-        Serial.print(n);
-        RunRight(n, forward);
-        break;
-  
-     case 'r':
-        n = Serial.parseInt();
-        Serial.print(n);
-        RunRight(n, backward);
-        break;
-
-     case 'c':
-        CalibrateMotors();
-        break;
-  
-     case 'd':
-        PrintDistance();
-        break;
-  
-     case 'w':
-        PrintWheels();
-        break;
-  
-     case 'v':
-        PrintBattery();
-        break;
-  
-     case 'i':
-        PrintIllumination();
-        break; 
-    
-      case 0:
-        break;
-
-      case 'D':
-        SetupLIDAR();
-        break;
-
-      case 's':
-        StopMotors();
-        break;
-        
-  
-      default:
-        Serial.println("??");
-        Prompt();
-        break;
-    }
-    Serial.print("\nCommand: ");
-  }
+  GetUSB();
+  GetWiFi();
 
   // Check if an interrupt function has stopped a motor and,
   // if so, report how long the motor turned.
