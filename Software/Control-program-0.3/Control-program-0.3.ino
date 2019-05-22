@@ -108,68 +108,13 @@ volatile char lStop, rStop; // Flag for when a motor has just stopped
 
 // LIDAR numbers
 
-float rateLimit = 0.25;
-uint32_t timingBudget = 100000;
-uint8_t periodPrePclks = 18; // Must be even
-uint8_t periodFinalPclks = 14; // Must be even
-unsigned int defaultDistance = 2000;
-
-void SetupLIDAR()
-{
-  Serial.println("Sensor starting.");
-  
-  Wire.begin();
-
-  sensor.init();
-  sensor.setTimeout(500);
-  if(!sensor.setSignalRateLimit(rateLimit))
-  {
-    Serial.println("Rate limit out of range.");
-    sensor.setSignalRateLimit(0.25);
-  }
-
-  if(!sensor.setMeasurementTimingBudget(timingBudget))
-  {
-    Serial.println("Timing budget out of range.");
-    sensor.setMeasurementTimingBudget(33000);
-  }
-
-  if(!sensor.setVcselPulsePeriod(VL53L0X::VcselPeriodPreRange, periodPrePclks))
-  {
-    Serial.println("Pulse pre period wrong.");
-    sensor.setVcselPulsePeriod(VL53L0X::VcselPeriodPreRange, 14);
-  }
-
-  if(!sensor.setVcselPulsePeriod(VL53L0X::VcselPeriodFinalRange, periodFinalPclks))
-  {
-    Serial.println("Pulse final period wrong.");
-    sensor.setVcselPulsePeriod(VL53L0X::VcselPeriodFinalRange, 10);
-  }
-
-  // Start continuous back-to-back mode (take readings as
-  // fast as possible).  To use continuous timed mode
-  // instead, provide a desired inter-measurement period in
-  // ms (e.g. sensor.startContinuous(100)).
-  sensor.startContinuous();    
-}
-
-// Return the distance in mm
-
-unsigned int LIDARDistance()
-{
-  unsigned int r = sensor.readRangeContinuousMillimeters();
-  if (sensor.timeoutOccurred())
-  {
-    Serial.println("\nSensor timeout");
-  }
-  if(r > 7500)
-  {
-    if(r > 9000)
-      Serial.println("Sensor reset needed.");
-    r = defaultDistance;
-  }
-  return r;  
-}
+const float rateLimit = 0.25;
+const uint32_t timingBudget = 100000;
+const uint8_t periodPrePclks = 18; // Must be even
+const uint8_t periodFinalPclks = 14; // Must be even
+const int defaultDistance = 2000;
+const int lidarTimeout = -1;
+const int lidarResetNeeded = -2;
 
 void SetupWiFi()
 {
@@ -253,35 +198,161 @@ void RightMotor(char direction)
   rightDirection = direction;  
 }
 
-
-void PrintDistance(bool usb)
+Stream* Output(WiFiClient* client)
 {
-  Serial.print("LIDAR distanc (mm): ");
-  Serial.println(LIDARDistance());  
+  if(client)
+  {
+    return client;
+  } else
+  {
+    return (Stream *)(&Serial);
+  }  
 }
 
-void PrintWheels(bool usb)
+void Endline(WiFiClient* client)
 {
-  Serial.print("L, R wheel sensors: ");
-  Serial.print(digitalRead(lSense));
-  Serial.print(", ");
-  Serial.println(digitalRead(rSense));  
+  if(client)
+  {
+    client->println("<br>");
+  } else
+  {
+    Serial.println();
+  }    
 }
 
-void PrintIllumination(bool usb)
+void PrintSpace(WiFiClient* client)
 {
+  if(client)
+  {
+    client->print("&nbsp;");
+  } else
+  {
+    Serial.print(' ');
+  }    
+}
+
+void SetupLIDAR()
+{
+  Serial.println("Sensor starting.");
+  
+  Wire.begin();
+
+  sensor.init();
+  sensor.setTimeout(500);
+  if(!sensor.setSignalRateLimit(rateLimit))
+  {
+    Serial.println("Rate limit out of range.");
+    sensor.setSignalRateLimit(0.25);
+  }
+
+  if(!sensor.setMeasurementTimingBudget(timingBudget))
+  {
+    Serial.println("Timing budget out of range.");
+    sensor.setMeasurementTimingBudget(33000);
+  }
+
+  if(!sensor.setVcselPulsePeriod(VL53L0X::VcselPeriodPreRange, periodPrePclks))
+  {
+    Serial.println("Pulse pre period wrong.");
+    sensor.setVcselPulsePeriod(VL53L0X::VcselPeriodPreRange, 14);
+  }
+
+  if(!sensor.setVcselPulsePeriod(VL53L0X::VcselPeriodFinalRange, periodFinalPclks))
+  {
+    Serial.println("Pulse final period wrong.");
+    sensor.setVcselPulsePeriod(VL53L0X::VcselPeriodFinalRange, 10);
+  }
+
+  // Start continuous back-to-back mode (take readings as
+  // fast as possible).  To use continuous timed mode
+  // instead, provide a desired inter-measurement period in
+  // ms (e.g. sensor.startContinuous(100)).
+  sensor.startContinuous();    
+}
+
+// Return the distance in mm
+
+int LIDARDistance()
+{
+  int r = (int)sensor.readRangeContinuousMillimeters();
+  if (sensor.timeoutOccurred())
+  {
+    return lidarTimeout;
+  }
+  if(r > 7500)
+  {
+    if(r > 9000)
+      return lidarResetNeeded;
+    r = defaultDistance;
+  }
+  return r;  
+}
+
+void PrintDistance(WiFiClient* client)
+{
+  Stream *op = Output(client);
+  int r = LIDARDistance();
+  switch(r)
+  {
+    case lidarTimeout:
+      op->print("LIDAR timed out.");
+      break;
+
+    case lidarResetNeeded:
+      op->print("LIDAR reset needed.");
+      break;
+
+    default:
+      op->print("LIDAR distance (mm): ");
+      op->print(r);
+  }
+  Endline(client); 
+}
+
+void PrintWheels(WiFiClient* client)
+{
+  Stream *op = Output(client);
+  op->print("L, R wheel sensors: ");
+  op->print(digitalRead(lSense));
+  op->print(", ");
+  op->print(digitalRead(rSense));
+  Endline(client);
+}
+
+void PrintIllumination(WiFiClient* client)
+{
+  Stream *op = Output(client);  
   digitalWrite(aSelect,photo);
   int v = analogRead(aRead);
-  Serial.print("Illumination voltage: ");
-  Serial.println(v);  
+  op->print("Illumination voltage: ");
+  op->print(v);
+  Endline(client); 
 }
 
-void PrintBattery(bool usb)
+void PrintBattery(WiFiClient* client)
 {
+  Stream *op = Output(client); 
   digitalWrite(aSelect,voltage);
   int v = analogRead(aRead);
-  Serial.print("Battery voltage: ");
-  Serial.println(v);  
+  op->print("Battery voltage: ");
+  op->print(v);
+  Endline(client); 
+}
+
+void PrintStatus(WiFiClient* client)
+{
+  Stream *op = Output(client);
+  Endline(client);
+  op->print("Status:");
+  PrintSpace(client); 
+  PrintDistance(client);
+  PrintSpace(client);
+  PrintWheels(client);
+  PrintSpace(client);
+  PrintIllumination(client);
+  PrintSpace(client);
+  PrintBattery(client);
+  Endline(client);
 }
 
 // Set the right motor running for n opto-wheel-slot pulses
@@ -366,26 +437,22 @@ void StopMotors()
 }
 
 
-void WiFiResponse(WiFiClient &client)
+void WiFiResponse(WiFiClient* client)
 {
   // Return the response
-  client.println("HTTP/1.1 200 OK");
-  client.println("Content-Type: text/html");
-  client.println(""); //  do not forget this one
-  client.println("<!DOCTYPE HTML>");
-  client.println("<html>");
- 
-  client.print("Led pin is now: ");
- 
-  if(value == HIGH) {
-    client.print("On");  
-  } else {
-    client.print("Off");
-  }
-  client.println("<br><br>");
-  client.println("Click <a href=\"/LED=ON\">here</a> turn the LED on pin 5 ON<br>");
-  client.println("Click <a href=\"/LED=OFF\">here</a> turn the LED on pin 5 OFF<br>");
-  client.println("</html>");  
+  client->println("HTTP/1.1 200 OK");
+  client->println("Content-Type: text/html");
+  client->println(""); //  do not forget this one
+  client->println("<!DOCTYPE HTML>");
+  client->println("<html>\n<br>");
+
+  PrintStatus(client);
+  
+  client->println("<br><br><a href=\"/frankc10\">Turn clockwise 10 steps</a> <br>");
+  client->println("<a href=\"/franka10\">Turn anticlockwise 10 steps</a> <br>");  
+  client->println("<a href=\"/frankf10\">Move forward 10 steps</a> <br>");
+  client->println("<a href=\"/frankr10\">Move backwarward 10 steps</a> <br>");
+  client->println("</html>");  
 }
 
 
@@ -405,6 +472,7 @@ void Prompt()
   Serial.println(" r n - reverse for n steps.");
   Serial.println(" d - print distance reading.");
   Serial.println(" w - print states of wheel sensors.");
+  Serial.println(" W - setup WiFi.");
   Serial.println(" v - print battery voltage.");
   Serial.println(" i - print illumination voltage.");
   Serial.println(" D - initialise LIDAR.");
@@ -412,96 +480,85 @@ void Prompt()
   Serial.println();
 }
 
-int GetInteger(bool usb)
+int GetInteger(String request, WiFiClient* client)
 {
-  int n;
-  if(usb)
+  int n= request.substring(1).toInt();
+  if(!client)
   {
-    n = Serial.parseInt();
     Serial.print(n);
-  } else
-  {
-    n = 1;
-  }
-  return n;
+  } 
 }
 
-void Interpret(String request, bool usb)
+void Interpret(String request, WiFiClient* client)
 {
   int n;
 
-    // Match the request
- 
-  int value = LOW;
-  if (request.indexOf("/LED=ON") != -1) {
-    digitalWrite(ledPin, HIGH);
-    value = HIGH;
-  } 
-  if (request.indexOf("/LED=OFF") != -1){
-    digitalWrite(ledPin, LOW);
-    value = LOW;
-  }
+  char c = request.charAt(0);
   
   switch(c)
   {
     case 'L':
-      n = GetInteger(usb);
+      n = GetInteger(request, client);
       RunLeft(n, forward);
       break;
 
    case 'l':
-      n = GetInteger(usb);
+      n = GetInteger(request, client);
       RunLeft(n, backward);
       break;
 
    case 'R':
-      n = GetInteger(usb);
+      n = GetInteger(request, client);
       RunRight(n, forward);
       break;
 
    case 'r':
-      n = GetInteger(usb);
+      n = GetInteger(request, client);
       RunRight(n, backward);
       break;
 
    case 'c':
-      n = GetInteger(usb);
+      n = GetInteger(request, client);
       RunRight(n, forward);
       RunLeft(n, backward);
       break;
 
    case 'a':
-      n = GetInteger(usb);
+      n = GetInteger(request, client);
       RunRight(n, backward);
       RunLeft(n, forward);
       break;
 
    case 'f':
-      n = GetInteger(usb);
+      n = GetInteger(request, client);
       RunRight(n, forward);
       RunLeft(n, forward);
       break;
       
    case 'b':
-      n = GetInteger(usb);
+      n = GetInteger(request, client);
       RunRight(n, backward);
       RunLeft(n, backward);
       break;
 
+   case 'W':
+      SetupWiFi();
+      break;
+
    case 'd':
-      PrintDistance(usb);
+      PrintDistance(client);
       break;
 
    case 'w':
-      PrintWheels(usb);
+      PrintWheels(client);
       break;
 
    case 'v':
-      PrintBattery(usb);
+      PrintBattery(client);
       break;
 
    case 'i':
-      PrintIllumination(usb);
+      PrintIllumination(client);
       break; 
   
     case 0:
@@ -517,7 +574,7 @@ void Interpret(String request, bool usb)
       
 
     default:
-      if(usb)
+      if(!client)
       {
         Serial.println("??");
         Prompt();
@@ -534,7 +591,7 @@ void GetUSB()
     return;
   }
   String request = Serial.readStringUntil('\n');
-  Interpret(request, USB);
+  Interpret(request, 0);
 }
 
 void GetWiFi()
@@ -561,7 +618,7 @@ void GetWiFi()
   } else
   {
     request = request.substring(r + 5);
-    Interpret(request, wifi);
+    Interpret(request, &client);
   }
 
   delay(1);
