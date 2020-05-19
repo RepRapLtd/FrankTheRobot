@@ -618,7 +618,8 @@ void GetWiFi()
   } else
   {
     request = request.substring(r + 5);
-    Interpret(request, &client);
+    Interpret(request, &
+    client);
   }
 
   delay(1);
