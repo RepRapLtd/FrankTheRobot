@@ -86,5 +86,5 @@ void loop()
     loopCount = 0;
   }
   Serial.println(distance());
-  loopCount++;
+  //loopCount++;
 }
