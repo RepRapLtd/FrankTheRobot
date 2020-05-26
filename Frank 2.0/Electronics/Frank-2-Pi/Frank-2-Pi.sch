@@ -185,13 +185,13 @@ Wire Wire Line
 	2450 1175 2450 1225
 Connection ~ 2525 1500
 Text GLabel 2325 4225 3    50   Input ~ 0
-IO0
+IO4
 Text GLabel 2925 4225 3    50   Input ~ 0
-IO3
+IO7
 Text GLabel 2525 4225 3    50   Input ~ 0
-IO1
+IO5
 Text GLabel 2725 4225 3    50   Input ~ 0
-IO2
+IO6
 $Comp
 L Transistor_FET:DMN6075S Q1
 U 1 1 5EC837A6
@@ -361,7 +361,7 @@ F 3 "~" H 1225 4650 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 Text GLabel 1375 4925 2    50   Input ~ 0
-IO4
+IO0
 $Comp
 L power:GND #PWR0107
 U 1 1 5EC73299
@@ -422,7 +422,7 @@ F 3 "~" H 1225 6150 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 Text GLabel 1325 6400 2    50   Input ~ 0
-IO6
+IO2
 $Comp
 L power:GND #PWR0111
 U 1 1 5EC8D938
@@ -477,7 +477,7 @@ U 2 1 5EC94A30
 P 2850 6850
 F 0 "U2" H 2850 7217 50  0000 C CNN
 F 1 "LM2903" H 2850 7126 50  0000 C CNN
-F 2 "Package_SO:Diodes_SO-8EP" H 2850 6850 50  0001 C CNN
+F 2 "reprapltd-kicad:Diodes_SO-8EP" H 2850 6850 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm393.pdf" H 2850 6850 50  0001 C CNN
 	2    2850 6850
 	1    0    0    -1  
@@ -488,7 +488,7 @@ U 1 1 5EC98EA5
 P 2825 5375
 F 0 "U2" H 2825 5742 50  0000 C CNN
 F 1 "LM2903" H 2825 5651 50  0000 C CNN
-F 2 "Package_SO:Diodes_SO-8EP" H 2825 5375 50  0001 C CNN
+F 2 "reprapltd-kicad:Diodes_SO-8EP" H 2825 5375 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm393.pdf" H 2825 5375 50  0001 C CNN
 	1    2825 5375
 	1    0    0    -1  
@@ -549,9 +549,9 @@ Connection ~ 2175 5950
 Wire Wire Line
 	2175 5950 2175 6000
 Text GLabel 3250 5375 2    50   Input ~ 0
-IO5
+IO1
 Text GLabel 3275 6850 2    50   Input ~ 0
-IO7
+IO3
 Wire Wire Line
 	3125 5375 3250 5375
 Wire Wire Line
@@ -562,7 +562,7 @@ U 3 1 5ECB8B0A
 P 3225 6050
 F 0 "U2" H 3183 6096 50  0000 L CNN
 F 1 "LM2903" H 3183 6005 50  0000 L CNN
-F 2 "Package_SO:Diodes_SO-8EP" H 3225 6050 50  0001 C CNN
+F 2 "reprapltd-kicad:Diodes_SO-8EP" H 3225 6050 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm393.pdf" H 3225 6050 50  0001 C CNN
 	3    3225 6050
 	1    0    0    -1  
@@ -1880,4 +1880,48 @@ Wire Wire Line
 Wire Wire Line
 	10575 1450 10250 1450
 Connection ~ 10250 1450
+$Comp
+L Mechanical:MountingHole H1
+U 1 1 5ED741BD
+P 7850 5625
+F 0 "H1" H 7950 5671 50  0000 L CNN
+F 1 "MountingHole" H 7950 5580 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 7850 5625 50  0001 C CNN
+F 3 "~" H 7850 5625 50  0001 C CNN
+	1    7850 5625
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H3
+U 1 1 5ED77C3D
+P 8200 5625
+F 0 "H3" H 8300 5671 50  0000 L CNN
+F 1 "MountingHole" H 8300 5580 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 8200 5625 50  0001 C CNN
+F 3 "~" H 8200 5625 50  0001 C CNN
+	1    8200 5625
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H2
+U 1 1 5ED7858B
+P 7850 5850
+F 0 "H2" H 7950 5896 50  0000 L CNN
+F 1 "MountingHole" H 7950 5805 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 7850 5850 50  0001 C CNN
+F 3 "~" H 7850 5850 50  0001 C CNN
+	1    7850 5850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H4
+U 1 1 5ED78FCD
+P 8200 5850
+F 0 "H4" H 8300 5896 50  0000 L CNN
+F 1 "MountingHole" H 8300 5805 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 8200 5850 50  0001 C CNN
+F 3 "~" H 8200 5850 50  0001 C CNN
+	1    8200 5850
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
