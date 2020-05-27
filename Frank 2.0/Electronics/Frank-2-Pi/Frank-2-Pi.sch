@@ -187,11 +187,11 @@ Connection ~ 2525 1500
 Text GLabel 2325 4225 3    50   Input ~ 0
 IO4
 Text GLabel 2925 4225 3    50   Input ~ 0
-IO7
+IO6
 Text GLabel 2525 4225 3    50   Input ~ 0
 IO5
 Text GLabel 2725 4225 3    50   Input ~ 0
-IO6
+IO7
 $Comp
 L Transistor_FET:DMN6075S Q1
 U 1 1 5EC837A6
@@ -1198,10 +1198,6 @@ Wire Wire Line
 Connection ~ 8400 1600
 Wire Wire Line
 	8400 1600 8400 1675
-Wire Wire Line
-	8700 1200 8925 1200
-Wire Wire Line
-	8700 1300 8825 1300
 $Comp
 L Connector:USB_OTG J8
 U 1 1 5EFB8934
@@ -1229,22 +1225,6 @@ Wire Wire Line
 Connection ~ 6925 1600
 Wire Wire Line
 	6925 1600 6925 1675
-Wire Wire Line
-	7225 1200 7450 1200
-Wire Wire Line
-	7225 1300 7350 1300
-Wire Wire Line
-	8925 1200 8925 1975
-Wire Wire Line
-	7450 1200 7450 1975
-Wire Wire Line
-	8825 1300 8825 2075
-Wire Wire Line
-	7350 1300 7350 2075
-Wire Wire Line
-	7450 1975 8925 1975
-Wire Wire Line
-	7350 2075 8825 2075
 $Comp
 L Connector:Conn_01x02_Male J9
 U 1 1 5F06A63C
@@ -1365,12 +1345,6 @@ Wire Wire Line
 	10725 2975 10650 2975
 Wire Wire Line
 	10650 2975 10650 3025
-Wire Wire Line
-	7225 1400 7225 2200
-Wire Wire Line
-	7225 2200 8700 2200
-Wire Wire Line
-	8700 2200 8700 1400
 Text Notes 4925 1650 0    50   ~ 0
 0x29
 $Comp

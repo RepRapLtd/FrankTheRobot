@@ -187,11 +187,11 @@ Connection ~ 2525 1500
 Text GLabel 2325 4225 3    50   Input ~ 0
 IO4
 Text GLabel 2925 4225 3    50   Input ~ 0
-IO7
+IO6
 Text GLabel 2525 4225 3    50   Input ~ 0
 IO5
 Text GLabel 2725 4225 3    50   Input ~ 0
-IO6
+IO7
 $Comp
 L Transistor_FET:DMN6075S Q1
 U 1 1 5EC837A6
@@ -477,7 +477,7 @@ U 2 1 5EC94A30
 P 2850 6850
 F 0 "U2" H 2850 7217 50  0000 C CNN
 F 1 "LM2903" H 2850 7126 50  0000 C CNN
-F 2 "Package_SO:Diodes_SO-8EP" H 2850 6850 50  0001 C CNN
+F 2 "reprapltd-kicad:Diodes_SO-8EP" H 2850 6850 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm393.pdf" H 2850 6850 50  0001 C CNN
 	2    2850 6850
 	1    0    0    -1  
@@ -488,7 +488,7 @@ U 1 1 5EC98EA5
 P 2825 5375
 F 0 "U2" H 2825 5742 50  0000 C CNN
 F 1 "LM2903" H 2825 5651 50  0000 C CNN
-F 2 "Package_SO:Diodes_SO-8EP" H 2825 5375 50  0001 C CNN
+F 2 "reprapltd-kicad:Diodes_SO-8EP" H 2825 5375 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm393.pdf" H 2825 5375 50  0001 C CNN
 	1    2825 5375
 	1    0    0    -1  
@@ -562,7 +562,7 @@ U 3 1 5ECB8B0A
 P 3225 6050
 F 0 "U2" H 3183 6096 50  0000 L CNN
 F 1 "LM2903" H 3183 6005 50  0000 L CNN
-F 2 "Package_SO:Diodes_SO-8EP" H 3225 6050 50  0001 C CNN
+F 2 "reprapltd-kicad:Diodes_SO-8EP" H 3225 6050 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm393.pdf" H 3225 6050 50  0001 C CNN
 	3    3225 6050
 	1    0    0    -1  
