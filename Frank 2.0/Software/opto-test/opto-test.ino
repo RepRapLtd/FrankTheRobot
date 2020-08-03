@@ -22,9 +22,7 @@ condition state = stopped;
 
 enum stage {inactive, fStarting, fRising, fFalling, fStopping, rStarting, rRising, rFalling, rStopping};
 stage test = inactive;
-long testTime;
 bool sensor = false;
-int pulseCount = 0;
 bool gRun = false;
 
 
@@ -33,7 +31,11 @@ int oldPWM = 200;
 bool graphLive = false;
 long graphTime = 0;
 int trough = 1024;
+int oneThird = 0;
 int peak = 0;
+int twoThirds = 0;
+
+int OptoReading(bool printBar);
 
 void PrintInt(int v)
 {
@@ -65,6 +67,16 @@ void Stop()
   state = stopped;
 }
 
+bool Trigger(int reading)
+{
+  bool s = sensor;
+  if(reading < oneThird)
+    sensor = false;
+  if(reading > twoThirds)
+    sensor = true;
+  return s ^ sensor;
+}
+
 int OptoReading(bool printBar)
 {
   int vDark = analogRead(sensePin);
@@ -79,12 +91,14 @@ int OptoReading(bool printBar)
     int stars = vDiff/10;
     for (int i = 0; i < stars; i++)
       Serial.print('*');
-    Serial.println();
-    if(vDark > peak)
-      peak = vDark;
-    if(vLight < trough)
-      trough = vLight;    
+    if(Trigger(vDiff))
+      Serial.print('<');
+    Serial.println();   
   }
+  if(vDiff > peak)
+    peak = vDiff;
+  if(vDiff < trough)
+    trough = vDiff; 
   return vDiff;  
 }
 
@@ -99,33 +113,26 @@ void Prompt()
   Serial.println(" c: Output PWM/RPM curves.\n");
 }
 
-void Timings()
+void Graph()
 {
-  if(graphLive)
+  if(!graphLive)
+    return;
+
+  int v = OptoReading(true); 
+  long t = millis();
+  if(t - 10000 >= graphTime)
   {
-    long t = millis();
-    if(t - 10000 >= graphTime)
-    {
-      graphLive = false;
-      Serial.print("\nTrough (light): ");
-      Serial.print(trough);
-      Serial.print(", Peak (dark): ");
-      Serial.print(peak);
-      Serial.println('\n');
-    }       
-  }
-}
-
-
-bool Trigger()
-{
-  bool s = sensor;
-  int reading = OptoReading(false);
-  if(reading < (peak - trough)/3)
-    sensor = false;
-  if(reading > ((peak - trough)*2)/3)
-    sensor = true;
-  return s ^ sensor; 
+    graphLive = false;
+    Serial.print("\nTrough (light): ");
+    Serial.print(trough);
+    Serial.print(", Peak (dark): ");
+    Serial.print(peak);
+    Serial.println('\n');
+    oneThird = trough + (peak - trough)/3;
+    twoThirds = trough + ((peak - trough)*2)/3;
+    gRun = true;
+  } else
+    delay(30);
 }
 
 void TurnOnOrOff()
@@ -144,31 +151,38 @@ void TurnOnOrOff()
     default:
       ;
   }
-  delay(stabiliseTime);
-  testTime = millis();
 }
+
+
 
 bool TestAtSpeed()
 {
-  if(Trigger())
-    pulseCount++;
-  long t = millis();
-  if(t - testTime > sampleTime)
+  TurnOnOrOff();
+  delay(stabiliseTime);
+  
+  long startTime = millis();
+  long t = startTime;
+  int pulseCount = 0;
+  
+  while(t - startTime <= sampleTime)
   {
-    float rpm = 60000.0*(float)pulseCount/((float)sampleTime*24.0);
-    Serial.print(' ');
-    Serial.print(pwm);
-    Serial.print(", ");
-    Serial.println(rpm);
-    testTime = t;
-    pulseCount = 0;
-    return true;
-  }
-  return false;
+    if(Trigger(OptoReading(false)))
+      pulseCount++;
+    t = millis();
+    delay(1);   // WHY IS THIS NEEDED???
+  }   
+  float rpm = 60000.0*(float)pulseCount/((float)sampleTime*12.0);
+  Serial.print(' ');
+  Serial.print(pwm);
+  Serial.print(", ");
+  Serial.println(rpm);
 }
 
 void Test()
 {
+  if(test == inactive)
+    return;
+    
   switch(test)
   {
     case fStarting:
@@ -180,58 +194,51 @@ void Test()
       delay(stabiliseTime);
       if(test == fStarting)
       {
-        Forward();
         Serial.print("Forward");
         test = fRising;
+        Forward();
       } else
       {
-        Backward();
-        Serial.print("Backward");
+        Serial.print("\nBackward");
         test = rRising;
+        Backward();
       }
       Serial.println(" rising curve:");
       Serial.println(" PWM, RPM");
-      TurnOnOrOff();
-      pulseCount = 0;
-      Trigger();      
+      Trigger(OptoReading(false));      
       break;
 
     case fRising:
     case rRising:
-      if(TestAtSpeed())
+      TestAtSpeed();
+      pwm += factor255;
+      if(pwm > 255)
       {
-        pwm += factor255;
-        if(pwm > 255)
-        {
-          pwm = 255;
-          Serial.println(" falling curve:");
-          Serial.println(" PWM, RPM");
-          if(test == fRising)
-            test = fFalling;
-          else
-            test = rFalling;
-        } else
-          TurnOnOrOff();
+        pwm = 255;
+        Serial.println("\n falling curve:");
+        Serial.println(" PWM, RPM");
+        if(test == fRising)
+          test = fFalling;
+        else
+          test = rFalling;
       }
       break;
 
 
     case fFalling:
     case rFalling:
-      if(TestAtSpeed())
+      TestAtSpeed();
+      pwm -= factor255;
+      if(pwm < 0)
       {
-        pwm -= factor255;
-        if(pwm < 0)
+        pwm = 0;
+        if(test == fFalling)
         {
-          pwm = 0;
-          Serial.println(" falling curve:");
-          Serial.println(" PWM, RPM");
-          if(test == fRising)
-            test = fFalling;
-          else
-            test = rFalling;
-        } else
-          TurnOnOrOff();
+          test = fStopping;
+        }else
+        {
+          test = rStopping;
+        }
       }
       break;
 
@@ -252,7 +259,7 @@ void Test()
 void setup() 
 {
   Serial.begin(9600);
-  Serial.println("Opto sensor test");
+  Serial.println("Motor and sensor test");
   pinMode(modulatePin, OUTPUT);
   digitalWrite(modulatePin, LOW);
   pinMode(pwmA, OUTPUT);
@@ -263,16 +270,14 @@ void setup()
 
 void loop() 
 {
-  Timings();
+  Graph();
 
-  if(test != inactive)
-  {
-    Test();
-  }else if(graphLive)
-  {
-    int v = OptoReading(true); 
-    delay(30);
-  } else if(Serial.available() > 0)
+  Test();
+
+  //OptoReading(true);
+  //delay(30);
+  
+  if(Serial.available() > 0)
   {
     int c = Serial.read();
     switch(c)
@@ -295,7 +300,6 @@ void loop()
         trough = 1024;
         peak = 0;
         graphTime = millis();
-        gRun = true;
         break;
       case 'c':
         if(gRun)
