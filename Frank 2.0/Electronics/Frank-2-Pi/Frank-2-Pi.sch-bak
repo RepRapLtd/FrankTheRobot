@@ -354,7 +354,7 @@ L Device:R_Small R1
 U 1 1 5EC6F193
 P 1225 4650
 F 0 "R1" V 1029 4650 50  0000 C CNN
-F 1 "220R" V 1120 4650 50  0000 C CNN
+F 1 "180R" V 1120 4650 50  0000 C CNN
 F 2 "Resistor_SMD:R_0805_2012Metric" H 1225 4650 50  0001 C CNN
 F 3 "~" H 1225 4650 50  0001 C CNN
 	1    1225 4650
@@ -415,7 +415,7 @@ L Device:R_Small R2
 U 1 1 5EC8D92E
 P 1225 6150
 F 0 "R2" V 1029 6150 50  0000 C CNN
-F 1 "220R" V 1120 6150 50  0000 C CNN
+F 1 "180R" V 1120 6150 50  0000 C CNN
 F 2 "Resistor_SMD:R_0805_2012Metric" H 1225 6150 50  0001 C CNN
 F 3 "~" H 1225 6150 50  0001 C CNN
 	1    1225 6150
@@ -1198,10 +1198,6 @@ Wire Wire Line
 Connection ~ 8400 1600
 Wire Wire Line
 	8400 1600 8400 1675
-Wire Wire Line
-	8700 1200 8925 1200
-Wire Wire Line
-	8700 1300 8825 1300
 $Comp
 L Connector:USB_OTG J8
 U 1 1 5EFB8934
@@ -1229,22 +1225,6 @@ Wire Wire Line
 Connection ~ 6925 1600
 Wire Wire Line
 	6925 1600 6925 1675
-Wire Wire Line
-	7225 1200 7450 1200
-Wire Wire Line
-	7225 1300 7350 1300
-Wire Wire Line
-	8925 1200 8925 1975
-Wire Wire Line
-	7450 1200 7450 1975
-Wire Wire Line
-	8825 1300 8825 2075
-Wire Wire Line
-	7350 1300 7350 2075
-Wire Wire Line
-	7450 1975 8925 1975
-Wire Wire Line
-	7350 2075 8825 2075
 $Comp
 L Connector:Conn_01x02_Male J9
 U 1 1 5F06A63C
@@ -1353,24 +1333,14 @@ F 3 "" H 10650 3025 50  0001 C CNN
 	1    10650 3025
 	1    0    0    -1  
 $EndComp
-Text GLabel 10500 2775 0    50   Input ~ 0
+Text GLabel 9675 2775 0    50   Input ~ 0
 SDA
-Text GLabel 10500 2875 0    50   Input ~ 0
+Text GLabel 9250 2875 0    50   Input ~ 0
 SCL
-Wire Wire Line
-	10500 2775 10725 2775
-Wire Wire Line
-	10500 2875 10725 2875
 Wire Wire Line
 	10725 2975 10650 2975
 Wire Wire Line
 	10650 2975 10650 3025
-Wire Wire Line
-	7225 1400 7225 2200
-Wire Wire Line
-	7225 2200 8700 2200
-Wire Wire Line
-	8700 2200 8700 1400
 Text Notes 4925 1650 0    50   ~ 0
 0x29
 $Comp
@@ -1924,4 +1894,62 @@ F 3 "~" H 8200 5850 50  0001 C CNN
 	1    8200 5850
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	9675 2775 9825 2775
+Wire Wire Line
+	10725 2875 9325 2875
+$Comp
+L Device:R_Small R?
+U 1 1 5F395C16
+P 9825 2400
+F 0 "R?" V 9975 2400 50  0000 C CNN
+F 1 "4K7" V 9900 2400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" H 9825 2400 50  0001 C CNN
+F 3 "~" H 9825 2400 50  0001 C CNN
+	1    9825 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 5F39678A
+P 9325 2425
+F 0 "R?" V 9475 2425 50  0000 C CNN
+F 1 "4K7" V 9400 2425 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" H 9325 2425 50  0001 C CNN
+F 3 "~" H 9325 2425 50  0001 C CNN
+	1    9325 2425
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9825 2500 9825 2775
+Connection ~ 9825 2775
+Wire Wire Line
+	9825 2775 10725 2775
+Wire Wire Line
+	9325 2525 9325 2875
+Connection ~ 9325 2875
+Wire Wire Line
+	9325 2875 9250 2875
+Wire Wire Line
+	9325 2325 9325 2275
+Wire Wire Line
+	9325 2275 9575 2275
+Wire Wire Line
+	9825 2275 9825 2300
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5F3CD87D
+P 9575 2200
+F 0 "#PWR?" H 9575 2050 50  0001 C CNN
+F 1 "+3.3V" H 9590 2373 50  0000 C CNN
+F 2 "" H 9575 2200 50  0001 C CNN
+F 3 "" H 9575 2200 50  0001 C CNN
+	1    9575 2200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9575 2200 9575 2275
+Connection ~ 9575 2275
+Wire Wire Line
+	9575 2275 9825 2275
 $EndSCHEMATC
