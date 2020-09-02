@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="D">
   <design>
-    <source>/home/ensab/Desktop/rrlOwncloud/RepRapLtd/Engineering/Internal-Projects/Robots/FrankTheRobot/Frank 2.0/Electronics/Frank-2-Pi/Frank-2-Pi.sch</source>
-    <date>Fri May 22 16:53:16 2020</date>
-    <tool>Eeschema 5.1.6-c6e7f7d~86~ubuntu18.04.1</tool>
+    <source>/home/ensab/rrlOwncloud/RepRapLtd/Engineering/Internal-Projects/Robots/FrankTheRobot/Frank 2.0/Electronics/Frank-2-Pi/Frank-2-Pi.sch</source>
+    <date>Tue 18 Aug 2020 15:48:35 BST</date>
+    <tool>Eeschema 5.1.6-c6e7f7d~86~ubuntu16.04.1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title/>
@@ -54,7 +54,7 @@
     <comp ref="U1">
       <value>adafruit-2448</value>
       <footprint>reprapltd-kicad:adafruit-2448</footprint>
-      <libsource lib="reprapltd-kicad" part="adafruit-2448" description=""/>
+      <libsource lib="Frank-2-Pi-rescue" part="adafruit-2448-reprapltd-kicad" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5EC6970C</tstamp>
     </comp>
@@ -140,7 +140,7 @@
     </comp>
     <comp ref="U2">
       <value>LM2903</value>
-      <footprint>Package_SO:Diodes_SO-8EP</footprint>
+      <footprint>reprapltd-kicad:Diodes_SO-8EP</footprint>
       <datasheet>http://www.ti.com/lit/ds/symlink/lm393.pdf</datasheet>
       <libsource lib="Comparator" part="LM2903" description="Low-Power, Low-Offset Voltage, Dual Comparators, DIP-8/SOIC-8/SOP-8/TSSOP-8/VSSOP-8"/>
       <sheetpath names="/" tstamps="/"/>
@@ -173,7 +173,7 @@
     <comp ref="U3">
       <value>adafruit-1015</value>
       <footprint>reprapltd-kicad:adafruit-1015</footprint>
-      <libsource lib="reprapltd-kicad" part="adafruit-1015" description=""/>
+      <libsource lib="Frank-2-Pi-rescue" part="adafruit-1015-reprapltd-kicad" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5ECFE0B0</tstamp>
     </comp>
@@ -364,7 +364,7 @@
     <comp ref="U5">
       <value>sparkfun-sx1509</value>
       <footprint>reprapltd-kicad:sparkfun-sx1509</footprint>
-      <libsource lib="reprapltd-kicad" part="sparkfun-sx1509" description=""/>
+      <libsource lib="Frank-2-Pi-rescue" part="sparkfun-sx1509-reprapltd-kicad" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5ECC19BD</tstamp>
     </comp>
@@ -400,14 +400,6 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5F036DD5</tstamp>
     </comp>
-    <comp ref="J15">
-      <value>GPIO</value>
-      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical</footprint>
-      <datasheet>~</datasheet>
-      <libsource lib="Connector" part="Conn_01x05_Male" description="Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamp>5F116CDD</tstamp>
-    </comp>
     <comp ref="C12">
       <value>0.1u</value>
       <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
@@ -415,6 +407,110 @@
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5F1E1982</tstamp>
+    </comp>
+    <comp ref="R16">
+      <value>220R</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5EC9242B</tstamp>
+    </comp>
+    <comp ref="R15">
+      <value>220R</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5EC93474</tstamp>
+    </comp>
+    <comp ref="J15">
+      <value>GPIO</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector" part="Conn_01x04_Male" description="Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ED486D7</tstamp>
+    </comp>
+    <comp ref="R14">
+      <value>220R</value>
+      <footprint>Resistor_SMD:R_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ED6E2BB</tstamp>
+    </comp>
+    <comp ref="D1">
+      <value>FLASH</value>
+      <footprint>LED_THT:LED_D3.0mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="LED_Small" description="Light emitting diode, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5EDA984E</tstamp>
+    </comp>
+    <comp ref="D2">
+      <value>5VLED</value>
+      <footprint>LED_THT:LED_D3.0mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="LED_Small" description="Light emitting diode, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5EDD6E16</tstamp>
+    </comp>
+    <comp ref="D3">
+      <value>3V3LED</value>
+      <footprint>LED_THT:LED_D3.0mm</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="LED_Small" description="Light emitting diode, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5EDDE768</tstamp>
+    </comp>
+    <comp ref="C13">
+      <value>0.1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ED516DD</tstamp>
+    </comp>
+    <comp ref="C14">
+      <value>0.1u</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ED5340A</tstamp>
+    </comp>
+    <comp ref="H1">
+      <value>MountingHole</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ED741BD</tstamp>
+    </comp>
+    <comp ref="H3">
+      <value>MountingHole</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ED77C3D</tstamp>
+    </comp>
+    <comp ref="H2">
+      <value>MountingHole</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ED7858B</tstamp>
+    </comp>
+    <comp ref="H4">
+      <value>MountingHole</value>
+      <footprint>MountingHole:MountingHole_3.2mm_M3</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ED78FCD</tstamp>
     </comp>
   </components>
   <libparts>
@@ -494,24 +590,6 @@
         <pin num="4" name="Pin_4" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Connector" part="Conn_01x05_Male">
-      <description>Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
-      <docs>~</docs>
-      <footprints>
-        <fp>Connector*:*_1x??_*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">J</field>
-        <field name="Value">Conn_01x05_Male</field>
-      </fields>
-      <pins>
-        <pin num="1" name="Pin_1" type="passive"/>
-        <pin num="2" name="Pin_2" type="passive"/>
-        <pin num="3" name="Pin_3" type="passive"/>
-        <pin num="4" name="Pin_4" type="passive"/>
-        <pin num="5" name="Pin_5" type="passive"/>
-      </pins>
-    </libpart>
     <libpart lib="Connector" part="USB_OTG">
       <description>USB mini/micro connector</description>
       <docs> ~</docs>
@@ -579,6 +657,23 @@
         <pin num="2" name="2" type="passive"/>
       </pins>
     </libpart>
+    <libpart lib="Device" part="LED_Small">
+      <description>Light emitting diode, small symbol</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>LED*</fp>
+        <fp>LED_SMD:*</fp>
+        <fp>LED_THT:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LED_Small</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
     <libpart lib="Device" part="R_Small">
       <description>Resistor, small symbol</description>
       <docs>~</docs>
@@ -593,6 +688,96 @@
         <pin num="1" name="~" type="passive"/>
         <pin num="2" name="~" type="passive"/>
       </pins>
+    </libpart>
+    <libpart lib="Frank-2-Pi-rescue" part="adafruit-1015-reprapltd-kicad">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">adafruit-1015-reprapltd-kicad</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Vdd" type="power_in"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="SCL" type="input"/>
+        <pin num="4" name="SDA" type="input"/>
+        <pin num="5" name="ADDR" type="input"/>
+        <pin num="6" name="ALRT" type="output"/>
+        <pin num="7" name="A0" type="input"/>
+        <pin num="8" name="A1" type="input"/>
+        <pin num="9" name="A2" type="input"/>
+        <pin num="10" name="A3" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="Frank-2-Pi-rescue" part="adafruit-2448-reprapltd-kicad">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">adafruit-2448-reprapltd-kicad</field>
+        <field name="Footprint">reprapltd-kicad:adafruit-2448</field>
+      </fields>
+      <pins>
+        <pin num="1" name="MOTORA1" type="output"/>
+        <pin num="2" name="MOTORA2" type="output"/>
+        <pin num="3" name="GND" type="power_in"/>
+        <pin num="4" name="GND" type="power_in"/>
+        <pin num="5" name="MOTORB1" type="output"/>
+        <pin num="6" name="MOTORB2" type="output"/>
+        <pin num="7" name="GND" type="power_in"/>
+        <pin num="8" name="VMot" type="power_in"/>
+        <pin num="9" name="Vmot" type="power_in"/>
+        <pin num="10" name="Vcc" type="power_in"/>
+        <pin num="11" name="GND" type="power_in"/>
+        <pin num="12" name="PWMB" type="input"/>
+        <pin num="13" name="BIN2" type="input"/>
+        <pin num="14" name="BIN1" type="input"/>
+        <pin num="15" name="STBY" type="input"/>
+        <pin num="16" name="AIN1" type="input"/>
+        <pin num="17" name="AIN2" type="input"/>
+        <pin num="18" name="PWMA" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="Frank-2-Pi-rescue" part="sparkfun-sx1509-reprapltd-kicad">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">sparkfun-sx1509-reprapltd-kicad</field>
+      </fields>
+      <pins>
+        <pin num="1" name="IO8" type="BiDi"/>
+        <pin num="2" name="IO9" type="BiDi"/>
+        <pin num="3" name="IO10" type="BiDi"/>
+        <pin num="4" name="IO11" type="BiDi"/>
+        <pin num="5" name="VC2" type="power_in"/>
+        <pin num="6" name="IO12" type="BiDi"/>
+        <pin num="7" name="IO13" type="BiDi"/>
+        <pin num="8" name="IO14" type="BiDi"/>
+        <pin num="9" name="IO15" type="BiDi"/>
+        <pin num="10" name="GND" type="power_in"/>
+        <pin num="11" name="SCL" type="input"/>
+        <pin num="12" name="SDA" type="input"/>
+        <pin num="13" name="3V3" type="power_in"/>
+        <pin num="14" name="GND" type="power_in"/>
+        <pin num="15" name="RST" type="input"/>
+        <pin num="16" name="INT" type="BiDi"/>
+        <pin num="17" name="GND" type="power_in"/>
+        <pin num="18" name="IO0" type="BiDi"/>
+        <pin num="19" name="IO1" type="BiDi"/>
+        <pin num="20" name="IO2" type="BiDi"/>
+        <pin num="21" name="IO3" type="BiDi"/>
+        <pin num="22" name="VC1" type="power_in"/>
+        <pin num="23" name="IO4" type="BiDi"/>
+        <pin num="24" name="IO5" type="BiDi"/>
+        <pin num="25" name="IO6" type="BiDi"/>
+        <pin num="26" name="IO7" type="BiDi"/>
+      </pins>
+    </libpart>
+    <libpart lib="Mechanical" part="MountingHole">
+      <description>Mounting Hole without connection</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>MountingHole*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">H</field>
+        <field name="Value">MountingHole</field>
+      </fields>
     </libpart>
     <libpart lib="Regulator_Linear" part="AP1117-15">
       <aliases>
@@ -716,85 +901,6 @@
         <pin num="3" name="D" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="reprapltd-kicad" part="adafruit-1015">
-      <fields>
-        <field name="Reference">U</field>
-        <field name="Value">adafruit-1015</field>
-      </fields>
-      <pins>
-        <pin num="1" name="Vdd" type="power_in"/>
-        <pin num="2" name="GND" type="power_in"/>
-        <pin num="3" name="SCL" type="input"/>
-        <pin num="4" name="SDA" type="input"/>
-        <pin num="5" name="ADDR" type="input"/>
-        <pin num="6" name="ALRT" type="output"/>
-        <pin num="7" name="A0" type="input"/>
-        <pin num="8" name="A1" type="input"/>
-        <pin num="9" name="A2" type="input"/>
-        <pin num="10" name="A3" type="input"/>
-      </pins>
-    </libpart>
-    <libpart lib="reprapltd-kicad" part="adafruit-2448">
-      <fields>
-        <field name="Reference">U</field>
-        <field name="Value">adafruit-2448</field>
-        <field name="Footprint">reprapltd-kicad:adafruit-2448</field>
-      </fields>
-      <pins>
-        <pin num="1" name="MOTORA1" type="output"/>
-        <pin num="2" name="MOTORA2" type="output"/>
-        <pin num="3" name="GND" type="power_in"/>
-        <pin num="4" name="GND" type="power_in"/>
-        <pin num="5" name="MOTORB1" type="output"/>
-        <pin num="6" name="MOTORB2" type="output"/>
-        <pin num="7" name="GND" type="power_in"/>
-        <pin num="8" name="VMot" type="power_in"/>
-        <pin num="9" name="Vmot" type="power_in"/>
-        <pin num="10" name="Vcc" type="power_in"/>
-        <pin num="11" name="GND" type="power_in"/>
-        <pin num="12" name="PWMB" type="input"/>
-        <pin num="13" name="BIN2" type="input"/>
-        <pin num="14" name="BIN1" type="input"/>
-        <pin num="15" name="STBY" type="input"/>
-        <pin num="16" name="AIN1" type="input"/>
-        <pin num="17" name="AIN2" type="input"/>
-        <pin num="18" name="PWMA" type="input"/>
-      </pins>
-    </libpart>
-    <libpart lib="reprapltd-kicad" part="sparkfun-sx1509">
-      <fields>
-        <field name="Reference">U</field>
-        <field name="Value">sparkfun-sx1509</field>
-      </fields>
-      <pins>
-        <pin num="1" name="IO8" type="BiDi"/>
-        <pin num="2" name="IO9" type="BiDi"/>
-        <pin num="3" name="IO10" type="BiDi"/>
-        <pin num="4" name="IO11" type="BiDi"/>
-        <pin num="5" name="VC2" type="power_in"/>
-        <pin num="6" name="IO12" type="BiDi"/>
-        <pin num="7" name="IO13" type="BiDi"/>
-        <pin num="8" name="IO14" type="BiDi"/>
-        <pin num="9" name="IO15" type="BiDi"/>
-        <pin num="10" name="GND" type="power_in"/>
-        <pin num="11" name="SCL" type="input"/>
-        <pin num="12" name="SDA" type="input"/>
-        <pin num="13" name="3V3" type="power_in"/>
-        <pin num="14" name="GND" type="power_in"/>
-        <pin num="15" name="RST" type="input"/>
-        <pin num="16" name="INT" type="BiDi"/>
-        <pin num="17" name="GND" type="power_in"/>
-        <pin num="18" name="IO0" type="BiDi"/>
-        <pin num="19" name="IO1" type="BiDi"/>
-        <pin num="20" name="IO2" type="BiDi"/>
-        <pin num="21" name="IO3" type="BiDi"/>
-        <pin num="22" name="VC1" type="power_in"/>
-        <pin num="23" name="IO4" type="BiDi"/>
-        <pin num="24" name="IO5" type="BiDi"/>
-        <pin num="25" name="IO6" type="BiDi"/>
-        <pin num="26" name="IO7" type="BiDi"/>
-      </pins>
-    </libpart>
   </libparts>
   <libraries>
     <library logical="Comparator">
@@ -806,289 +912,319 @@
     <library logical="Device">
       <uri>/usr/share/kicad/library/Device.lib</uri>
     </library>
+    <library logical="Frank-2-Pi-rescue">
+      <uri>/home/ensab/rrlOwncloud/RepRapLtd/Engineering/Internal-Projects/Robots/FrankTheRobot/Frank 2.0/Electronics/Frank-2-Pi/Frank-2-Pi-rescue.lib</uri>
+    </library>
+    <library logical="Mechanical">
+      <uri>/usr/share/kicad/library/Mechanical.lib</uri>
+    </library>
     <library logical="Regulator_Linear">
       <uri>/usr/share/kicad/library/Regulator_Linear.lib</uri>
     </library>
     <library logical="Transistor_FET">
       <uri>/usr/share/kicad/library/Transistor_FET.lib</uri>
     </library>
-    <library logical="reprapltd-kicad">
-      <uri>/home/ensab/Desktop/rrlOwncloud/RepRapLtd/Engineering/Electronics/Kicad/reprapltd-kicad.lib</uri>
-    </library>
   </libraries>
   <nets>
     <net code="1" name="GND">
-      <node ref="J16" pin="1"/>
-      <node ref="C7" pin="2"/>
-      <node ref="J14" pin="1"/>
-      <node ref="U1" pin="7"/>
-      <node ref="J13" pin="1"/>
-      <node ref="J12" pin="1"/>
-      <node ref="U2" pin="4"/>
-      <node ref="J1" pin="3"/>
-      <node ref="C1" pin="2"/>
-      <node ref="J4" pin="3"/>
-      <node ref="C9" pin="2"/>
-      <node ref="C10" pin="2"/>
-      <node ref="C8" pin="2"/>
-      <node ref="J5" pin="1"/>
-      <node ref="C6" pin="2"/>
-      <node ref="Q1" pin="2"/>
-      <node ref="Q2" pin="2"/>
-      <node ref="C11" pin="2"/>
-      <node ref="U5" pin="10"/>
-      <node ref="U5" pin="17"/>
-      <node ref="U5" pin="14"/>
       <node ref="U1" pin="4"/>
-      <node ref="U1" pin="3"/>
-      <node ref="U1" pin="11"/>
-      <node ref="J15" pin="5"/>
-      <node ref="J7" pin="1"/>
-      <node ref="C12" pin="1"/>
-      <node ref="U3" pin="2"/>
-      <node ref="R12" pin="2"/>
-      <node ref="J11" pin="1"/>
-      <node ref="U3" pin="5"/>
+      <node ref="R10" pin="2"/>
+      <node ref="U1" pin="7"/>
+      <node ref="J6" pin="3"/>
+      <node ref="J14" pin="1"/>
       <node ref="J10" pin="5"/>
       <node ref="J10" pin="6"/>
+      <node ref="U2" pin="4"/>
       <node ref="J8" pin="5"/>
       <node ref="J8" pin="6"/>
-      <node ref="J6" pin="3"/>
-      <node ref="C3" pin="2"/>
-      <node ref="C5" pin="2"/>
-      <node ref="R10" pin="2"/>
+      <node ref="C9" pin="2"/>
+      <node ref="C10" pin="2"/>
       <node ref="U4" pin="1"/>
+      <node ref="Q1" pin="2"/>
+      <node ref="C11" pin="2"/>
+      <node ref="C1" pin="2"/>
+      <node ref="J12" pin="1"/>
+      <node ref="J13" pin="1"/>
+      <node ref="C12" pin="1"/>
+      <node ref="C13" pin="2"/>
+      <node ref="C14" pin="2"/>
+      <node ref="U3" pin="2"/>
+      <node ref="J15" pin="4"/>
+      <node ref="D2" pin="1"/>
+      <node ref="J1" pin="3"/>
+      <node ref="D3" pin="1"/>
+      <node ref="J4" pin="3"/>
+      <node ref="U5" pin="10"/>
+      <node ref="J5" pin="1"/>
+      <node ref="J7" pin="1"/>
+      <node ref="U5" pin="14"/>
+      <node ref="U5" pin="17"/>
+      <node ref="U1" pin="3"/>
+      <node ref="U3" pin="5"/>
+      <node ref="J16" pin="1"/>
+      <node ref="J11" pin="1"/>
+      <node ref="Q2" pin="2"/>
+      <node ref="U1" pin="11"/>
+      <node ref="C3" pin="2"/>
+      <node ref="C7" pin="2"/>
+      <node ref="C6" pin="2"/>
+      <node ref="C8" pin="2"/>
+      <node ref="C5" pin="2"/>
+      <node ref="R12" pin="2"/>
     </net>
-    <net code="2" name="Net-(J10-Pad3)">
-      <node ref="J10" pin="3"/>
-      <node ref="J8" pin="3"/>
-    </net>
-    <net code="3" name="Net-(J10-Pad2)">
-      <node ref="J10" pin="2"/>
-      <node ref="J8" pin="2"/>
-    </net>
-    <net code="4" name="Net-(J8-Pad1)">
-      <node ref="J8" pin="1"/>
-      <node ref="J9" pin="2"/>
-    </net>
-    <net code="5" name="Net-(J10-Pad4)">
-      <node ref="J8" pin="4"/>
-      <node ref="J10" pin="4"/>
-    </net>
-    <net code="6" name="SDA">
-      <node ref="U3" pin="4"/>
-      <node ref="J6" pin="2"/>
-      <node ref="U5" pin="12"/>
-      <node ref="J16" pin="3"/>
-    </net>
-    <net code="7" name="+3V3">
-      <node ref="U3" pin="1"/>
+    <net code="2" name="+3V3">
+      <node ref="R9" pin="1"/>
       <node ref="R8" pin="2"/>
-      <node ref="U2" pin="8"/>
+      <node ref="C1" pin="1"/>
+      <node ref="R13" pin="1"/>
+      <node ref="C5" pin="1"/>
+      <node ref="J11" pin="2"/>
+      <node ref="R7" pin="2"/>
+      <node ref="R14" pin="1"/>
+      <node ref="U4" pin="2"/>
+      <node ref="C10" pin="1"/>
+      <node ref="U5" pin="13"/>
+      <node ref="R1" pin="2"/>
+      <node ref="J6" pin="4"/>
       <node ref="R5" pin="1"/>
+      <node ref="C6" pin="1"/>
+      <node ref="U3" pin="1"/>
+      <node ref="R16" pin="2"/>
+      <node ref="R2" pin="2"/>
+      <node ref="U2" pin="8"/>
       <node ref="R6" pin="1"/>
       <node ref="U1" pin="10"/>
-      <node ref="R9" pin="1"/>
-      <node ref="R13" pin="1"/>
-      <node ref="R2" pin="2"/>
-      <node ref="J6" pin="4"/>
-      <node ref="R1" pin="2"/>
-      <node ref="R7" pin="2"/>
-      <node ref="C5" pin="1"/>
-      <node ref="U4" pin="2"/>
-      <node ref="U5" pin="13"/>
       <node ref="C7" pin="1"/>
-      <node ref="C1" pin="1"/>
+      <node ref="U5" pin="5"/>
+      <node ref="C14" pin="1"/>
       <node ref="U5" pin="22"/>
       <node ref="C12" pin="2"/>
-      <node ref="C6" pin="1"/>
-      <node ref="J11" pin="2"/>
-      <node ref="C10" pin="1"/>
-      <node ref="U5" pin="5"/>
     </net>
-    <net code="8" name="+5V">
-      <node ref="J14" pin="2"/>
-      <node ref="U1" pin="9"/>
-      <node ref="J13" pin="2"/>
-      <node ref="J12" pin="2"/>
-      <node ref="J9" pin="1"/>
-      <node ref="R11" pin="1"/>
-      <node ref="J11" pin="3"/>
-      <node ref="C3" pin="1"/>
-      <node ref="U4" pin="3"/>
-      <node ref="C9" pin="1"/>
-      <node ref="J10" pin="1"/>
+    <net code="3" name="SDA">
+      <node ref="J6" pin="2"/>
+      <node ref="U3" pin="4"/>
+      <node ref="J16" pin="3"/>
+      <node ref="U5" pin="12"/>
     </net>
-    <net code="9" name="SCL">
+    <net code="4" name="SCL">
       <node ref="J6" pin="1"/>
       <node ref="U3" pin="3"/>
-      <node ref="U5" pin="11"/>
       <node ref="J16" pin="2"/>
+      <node ref="U5" pin="11"/>
     </net>
-    <net code="10" name="Net-(Q1-Pad3)">
-      <node ref="U1" pin="13"/>
-      <node ref="Q1" pin="3"/>
-      <node ref="R5" pin="2"/>
-    </net>
-    <net code="11" name="Net-(J5-Pad3)">
-      <node ref="U3" pin="10"/>
-      <node ref="J5" pin="3"/>
-      <node ref="JP2" pin="2"/>
-    </net>
-    <net code="12" name="Net-(C8-Pad1)">
-      <node ref="R11" pin="2"/>
-      <node ref="R12" pin="1"/>
-      <node ref="C8" pin="1"/>
-      <node ref="U3" pin="7"/>
-    </net>
-    <net code="13" name="Net-(J14-Pad3)">
-      <node ref="J14" pin="3"/>
-      <node ref="U5" pin="2"/>
-    </net>
-    <net code="14" name="Net-(J13-Pad3)">
-      <node ref="J13" pin="3"/>
-      <node ref="U5" pin="3"/>
-    </net>
-    <net code="15" name="Net-(J12-Pad3)">
-      <node ref="U5" pin="4"/>
-      <node ref="J12" pin="3"/>
-    </net>
-    <net code="16" name="Net-(J7-Pad2)">
-      <node ref="J7" pin="2"/>
-      <node ref="R13" pin="2"/>
-      <node ref="U3" pin="8"/>
-    </net>
-    <net code="17" name="Net-(J15-Pad1)">
-      <node ref="U5" pin="6"/>
-      <node ref="J15" pin="1"/>
-    </net>
-    <net code="18" name="Net-(J15-Pad2)">
-      <node ref="U5" pin="7"/>
-      <node ref="J15" pin="2"/>
-    </net>
-    <net code="19" name="Net-(J15-Pad3)">
-      <node ref="U5" pin="8"/>
-      <node ref="J15" pin="3"/>
-    </net>
-    <net code="20" name="Net-(J15-Pad4)">
-      <node ref="J15" pin="4"/>
-      <node ref="U5" pin="9"/>
-    </net>
-    <net code="21" name="IO4">
-      <node ref="J1" pin="2"/>
-      <node ref="U5" pin="23"/>
-    </net>
-    <net code="22" name="IO3">
-      <node ref="U5" pin="21"/>
-      <node ref="U1" pin="12"/>
-    </net>
-    <net code="23" name="INTERRUPT">
-      <node ref="J16" pin="4"/>
-      <node ref="U5" pin="16"/>
-    </net>
-    <net code="24" name="Net-(U5-Pad15)">
-      <node ref="U5" pin="15"/>
-    </net>
-    <net code="25" name="IO0">
-      <node ref="U1" pin="18"/>
-      <node ref="U5" pin="18"/>
-    </net>
-    <net code="26" name="IO1">
-      <node ref="U1" pin="16"/>
-      <node ref="R4" pin="2"/>
-      <node ref="U5" pin="19"/>
-    </net>
-    <net code="27" name="IO2">
-      <node ref="R3" pin="2"/>
-      <node ref="U1" pin="14"/>
-      <node ref="U5" pin="20"/>
-    </net>
-    <net code="28" name="IO5">
-      <node ref="U2" pin="1"/>
-      <node ref="U5" pin="24"/>
-    </net>
-    <net code="29" name="IO6">
-      <node ref="U5" pin="25"/>
-      <node ref="J4" pin="2"/>
-    </net>
-    <net code="30" name="IO7">
-      <node ref="U2" pin="7"/>
-      <node ref="U5" pin="26"/>
-    </net>
-    <net code="31" name="IO8">
-      <node ref="U5" pin="1"/>
-      <node ref="U3" pin="6"/>
-    </net>
-    <net code="32" name="Net-(Q2-Pad1)">
-      <node ref="R4" pin="1"/>
-      <node ref="Q2" pin="1"/>
-    </net>
-    <net code="33" name="Net-(Q2-Pad3)">
+    <net code="5" name="Net-(Q2-Pad3)">
       <node ref="R6" pin="2"/>
       <node ref="U1" pin="17"/>
       <node ref="Q2" pin="3"/>
     </net>
-    <net code="34" name="Net-(Q1-Pad1)">
-      <node ref="Q1" pin="1"/>
+    <net code="6" name="Net-(J8-Pad1)">
+      <node ref="J8" pin="1"/>
+      <node ref="J9" pin="2"/>
+    </net>
+    <net code="7" name="Net-(Q1-Pad3)">
+      <node ref="R5" pin="2"/>
+      <node ref="U1" pin="13"/>
+      <node ref="Q1" pin="3"/>
+    </net>
+    <net code="8" name="Net-(J15-Pad2)">
+      <node ref="U5" pin="8"/>
+      <node ref="J15" pin="2"/>
+    </net>
+    <net code="9" name="IO4">
+      <node ref="U5" pin="23"/>
+      <node ref="U1" pin="12"/>
+    </net>
+    <net code="10" name="IO5">
+      <node ref="U5" pin="24"/>
+      <node ref="R3" pin="2"/>
+      <node ref="U1" pin="14"/>
+    </net>
+    <net code="11" name="IO6">
+      <node ref="U1" pin="18"/>
+      <node ref="U5" pin="25"/>
+    </net>
+    <net code="12" name="Net-(J15-Pad3)">
+      <node ref="U5" pin="9"/>
+      <node ref="J15" pin="3"/>
+    </net>
+    <net code="13" name="INTERRUPT">
+      <node ref="U5" pin="16"/>
+      <node ref="J16" pin="4"/>
+    </net>
+    <net code="14" name="Net-(U5-Pad15)">
+      <node ref="U5" pin="15"/>
+    </net>
+    <net code="15" name="IO0">
+      <node ref="J1" pin="2"/>
+      <node ref="U5" pin="18"/>
+    </net>
+    <net code="16" name="IO1">
+      <node ref="U5" pin="19"/>
+      <node ref="U2" pin="1"/>
+    </net>
+    <net code="17" name="Net-(J14-Pad3)">
+      <node ref="J14" pin="3"/>
+      <node ref="U5" pin="2"/>
+    </net>
+    <net code="18" name="IO2">
+      <node ref="J4" pin="2"/>
+      <node ref="U5" pin="20"/>
+    </net>
+    <net code="19" name="IO3">
+      <node ref="U5" pin="21"/>
+      <node ref="U2" pin="7"/>
+    </net>
+    <net code="20" name="Net-(J8-Pad3)">
+      <node ref="J8" pin="3"/>
+    </net>
+    <net code="21" name="Net-(J8-Pad2)">
+      <node ref="J8" pin="2"/>
+    </net>
+    <net code="22" name="Net-(J10-Pad4)">
+      <node ref="J10" pin="4"/>
+    </net>
+    <net code="23" name="Net-(J8-Pad4)">
+      <node ref="J8" pin="4"/>
+    </net>
+    <net code="24" name="Net-(J10-Pad2)">
+      <node ref="J10" pin="2"/>
+    </net>
+    <net code="25" name="Net-(J10-Pad3)">
+      <node ref="J10" pin="3"/>
+    </net>
+    <net code="26" name="Net-(D3-Pad2)">
+      <node ref="R16" pin="1"/>
+      <node ref="D3" pin="2"/>
+    </net>
+    <net code="27" name="Net-(D2-Pad2)">
+      <node ref="R15" pin="1"/>
+      <node ref="D2" pin="2"/>
+    </net>
+    <net code="28" name="+5V">
+      <node ref="U4" pin="3"/>
+      <node ref="J12" pin="2"/>
+      <node ref="U1" pin="9"/>
+      <node ref="J13" pin="2"/>
+      <node ref="J14" pin="2"/>
+      <node ref="J11" pin="3"/>
+      <node ref="C13" pin="1"/>
+      <node ref="R15" pin="2"/>
+      <node ref="J10" pin="1"/>
+      <node ref="R11" pin="1"/>
+      <node ref="C9" pin="1"/>
+      <node ref="J9" pin="1"/>
+      <node ref="C3" pin="1"/>
+    </net>
+    <net code="29" name="Net-(J15-Pad1)">
+      <node ref="U5" pin="7"/>
+      <node ref="J15" pin="1"/>
+    </net>
+    <net code="30" name="Net-(D1-Pad2)">
+      <node ref="D1" pin="2"/>
+      <node ref="R14" pin="2"/>
+    </net>
+    <net code="31" name="Net-(D1-Pad1)">
+      <node ref="U5" pin="6"/>
+      <node ref="D1" pin="1"/>
+    </net>
+    <net code="32" name="IO8">
+      <node ref="U5" pin="1"/>
+      <node ref="U3" pin="6"/>
+    </net>
+    <net code="33" name="IO7">
+      <node ref="R4" pin="2"/>
+      <node ref="U5" pin="26"/>
+      <node ref="U1" pin="16"/>
+    </net>
+    <net code="34" name="Net-(J13-Pad3)">
+      <node ref="J13" pin="3"/>
+      <node ref="U5" pin="3"/>
+    </net>
+    <net code="35" name="Net-(J12-Pad3)">
+      <node ref="J12" pin="3"/>
+      <node ref="U5" pin="4"/>
+    </net>
+    <net code="36" name="Net-(C8-Pad1)">
+      <node ref="R12" pin="1"/>
+      <node ref="C8" pin="1"/>
+      <node ref="U3" pin="7"/>
+      <node ref="R11" pin="2"/>
+    </net>
+    <net code="37" name="Net-(Q2-Pad1)">
+      <node ref="Q2" pin="1"/>
+      <node ref="R4" pin="1"/>
+    </net>
+    <net code="38" name="Net-(Q1-Pad1)">
       <node ref="R3" pin="1"/>
+      <node ref="Q1" pin="1"/>
     </net>
-    <net code="35" name="Net-(J1-Pad1)">
-      <node ref="R1" pin="1"/>
-      <node ref="J1" pin="1"/>
+    <net code="39" name="Net-(J1-Pad4)">
+      <node ref="JP1" pin="1"/>
+      <node ref="J1" pin="4"/>
+      <node ref="U2" pin="3"/>
+      <node ref="R7" pin="1"/>
     </net>
-    <net code="36" name="Net-(C4-Pad1)">
+    <net code="40" name="Net-(U1-Pad15)">
+      <node ref="U1" pin="15"/>
+    </net>
+    <net code="41" name="Net-(C4-Pad1)">
       <node ref="J3" pin="1"/>
       <node ref="C4" pin="1"/>
       <node ref="U1" pin="1"/>
     </net>
-    <net code="37" name="Net-(U1-Pad15)">
-      <node ref="U1" pin="15"/>
-    </net>
-    <net code="38" name="Net-(C2-Pad1)">
+    <net code="42" name="Net-(C2-Pad1)">
+      <node ref="J2" pin="1"/>
       <node ref="C2" pin="1"/>
       <node ref="U1" pin="5"/>
-      <node ref="J2" pin="1"/>
     </net>
-    <net code="39" name="Net-(C2-Pad2)">
-      <node ref="J2" pin="2"/>
+    <net code="43" name="Net-(C2-Pad2)">
       <node ref="U1" pin="6"/>
+      <node ref="J2" pin="2"/>
       <node ref="C2" pin="2"/>
     </net>
-    <net code="40" name="Net-(C4-Pad2)">
-      <node ref="J3" pin="2"/>
-      <node ref="C4" pin="2"/>
-      <node ref="U1" pin="2"/>
-    </net>
-    <net code="41" name="Net-(U1-Pad8)">
+    <net code="44" name="Net-(U1-Pad8)">
       <node ref="U1" pin="8"/>
     </net>
-    <net code="42" name="Net-(J1-Pad4)">
-      <node ref="U2" pin="3"/>
-      <node ref="J1" pin="4"/>
-      <node ref="JP1" pin="1"/>
-      <node ref="R7" pin="1"/>
+    <net code="45" name="Net-(C4-Pad2)">
+      <node ref="C4" pin="2"/>
+      <node ref="J3" pin="2"/>
+      <node ref="U1" pin="2"/>
     </net>
-    <net code="43" name="Net-(J5-Pad2)">
+    <net code="46" name="Net-(J5-Pad3)">
+      <node ref="U3" pin="10"/>
+      <node ref="JP2" pin="2"/>
+      <node ref="J5" pin="3"/>
+    </net>
+    <net code="47" name="Net-(J4-Pad4)">
+      <node ref="J4" pin="4"/>
+      <node ref="JP2" pin="1"/>
+      <node ref="U2" pin="5"/>
+      <node ref="R8" pin="1"/>
+    </net>
+    <net code="48" name="Net-(J5-Pad2)">
       <node ref="J5" pin="2"/>
       <node ref="JP1" pin="2"/>
       <node ref="U3" pin="9"/>
     </net>
-    <net code="44" name="Net-(J4-Pad4)">
-      <node ref="R8" pin="1"/>
-      <node ref="JP2" pin="1"/>
-      <node ref="J4" pin="4"/>
-      <node ref="U2" pin="5"/>
+    <net code="49" name="Net-(J7-Pad2)">
+      <node ref="J7" pin="2"/>
+      <node ref="U3" pin="8"/>
+      <node ref="R13" pin="2"/>
     </net>
-    <net code="45" name="Net-(J4-Pad1)">
-      <node ref="R2" pin="1"/>
+    <net code="50" name="Net-(J1-Pad1)">
+      <node ref="R1" pin="1"/>
+      <node ref="J1" pin="1"/>
+    </net>
+    <net code="51" name="Net-(J4-Pad1)">
       <node ref="J4" pin="1"/>
+      <node ref="R2" pin="1"/>
     </net>
-    <net code="46" name="Net-(C11-Pad1)">
+    <net code="52" name="Net-(C11-Pad1)">
+      <node ref="R9" pin="2"/>
+      <node ref="U2" pin="6"/>
+      <node ref="U2" pin="2"/>
       <node ref="R10" pin="1"/>
       <node ref="C11" pin="1"/>
-      <node ref="R9" pin="2"/>
-      <node ref="U2" pin="2"/>
-      <node ref="U2" pin="6"/>
     </net>
   </nets>
 </export>
