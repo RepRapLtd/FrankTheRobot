@@ -95,7 +95,7 @@ Wire Wire Line
 Text Notes 7025 6850 0    50   ~ 0
 Opto diode 1.16V; min ~= 800, max ~= 900; 0.782, 0.879; 2.58, 2.9v; 0.5 ->0.83\nBattery connects to charge connector by its own USB
 $Comp
-L reprapltd-kicad:adafruit-2448 U1
+L Frank-2-Pi-rescue:adafruit-2448-reprapltd-kicad U1
 U 1 1 5EC6970C
 P 2475 2000
 F 0 "U1" V 2000 2350 50  0000 L CNN
@@ -639,7 +639,7 @@ Wire Wire Line
 Text Notes 1625 4675 0    50   ~ 0
 10mA
 $Comp
-L reprapltd-kicad:adafruit-1015 U3
+L Frank-2-Pi-rescue:adafruit-1015-reprapltd-kicad U3
 U 1 1 5ECFE0B0
 P 4575 6150
 F 0 "U3" H 4542 5485 50  0000 C CNN
@@ -1359,7 +1359,7 @@ INTERRUPT
 Wire Wire Line
 	10725 2675 10475 2675
 $Comp
-L reprapltd-kicad:sparkfun-sx1509 U5
+L Frank-2-Pi-rescue:sparkfun-sx1509-reprapltd-kicad U5
 U 1 1 5ECC19BD
 P 6825 3525
 F 0 "U5" H 6825 4300 50  0000 C CNN
