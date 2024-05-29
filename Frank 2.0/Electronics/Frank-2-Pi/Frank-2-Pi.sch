@@ -1172,7 +1172,7 @@ Connection ~ 10250 1000
 Wire Wire Line
 	10250 1000 10400 1000
 $Comp
-L Connector:USB_OTG J10
+L Frank-2-Pi-rescue:USB_OTG-Connector J10
 U 1 1 5EF4CF78
 P 8400 1200
 F 0 "J10" H 8400 1575 50  0000 C CNN
@@ -1199,7 +1199,7 @@ Connection ~ 8400 1600
 Wire Wire Line
 	8400 1600 8400 1675
 $Comp
-L Connector:USB_OTG J8
+L Frank-2-Pi-rescue:USB_OTG-Connector J8
 U 1 1 5EFB8934
 P 6925 1200
 F 0 "J8" H 6925 1575 50  0000 C CNN
